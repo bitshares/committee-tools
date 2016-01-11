@@ -4,7 +4,7 @@ begin_builder_transaction
 
 
 
-add_operation_to_builder_transaction <label from above> [  24,{    "fee": {      "amount": 200000,      "asset_id": "1.3.0"    },    "fee_paying_account": "1.2.<your id>",    "using_owner_authority": false,    "proposal": "1.10.<proposal to kill>",    "extensions": []  }]
+add_operation_to_builder_transaction (label from above) [  24,{    "fee": {      "amount": 200000,      "asset_id": "1.3.0"    },    "fee_paying_account": "1.2.(your id)",    "using_owner_authority": false,    "proposal": "1.10.(proposal to delete)",    "extensions": []  }]
 
 // so for example if I wanted to delete proposal 1.10.50 and the builder transaction label was 0 I would.
 
@@ -12,7 +12,7 @@ add_operation_to_builder_transaction <label from above> [  24,{    "fee": {     
 
 
 
-propose_builder_transaction2 <label from above> <account name> <experation time> <review period> true
+propose_builder_transaction2 (label from above) (account name) (experation time) (review period) true
 
 // to broadcast this builder transaction as a proposal that will expire on January 12th at 12 noon, and be in reveiw for one hour I would
 
