@@ -1,5 +1,5 @@
 from grapheneapi.grapheneclient import GrapheneClient
-from graphenebase.transactions import getOperationNameForId
+from graphenebase.transactions import getOperationNameForId, operations
 import json
 
 proposer   = "xeroc"
@@ -20,20 +20,22 @@ if __name__ == '__main__':
 
     # General change of parameter
     changes = {}
-    for i, f in enumerate(current_fees, 0) :
-        if ("price_per_kbyte" in current_fees[i][1]):
-            changes[getOperationNameForId(f[0])] = {"price_per_kbyte" : int(price_per_kbyte / scale * 1e5)}
+    for f in current_fees :
+        if ("price_per_kbyte" in f[1]):
+            # Set the current fees
+            changes[getOperationNameForId(f[0])] = f[1]
+            # update the price_per_kbyte
+            changes[getOperationNameForId(f[0])]["price_per_kbyte"] = int(price_per_kbyte / scale * 1e5)
 
-    # overwrite
+    # overwrite / set specific fees
     changes["transfer"]["price_per_kbyte"]       = int(  20 / scale * 1e5)
     changes["account_update"]["price_per_kbyte"] = int(   5 / scale * 1e5)
 
-    print("Changes")
     print("=" * 80)
     print(json.dumps(changes, indent=4))
     print("=" * 80)
     tx = graphene.rpc.propose_fee_change(proposer, expiration, changes, broadcast)
-    print(json.dumps(tx, indent=4))
+    print(json.dumps(tx["operations"][0][1]["proposed_ops"][0]["op"][1]["new_parameters"], indent=4))
 
     if not broadcast:
         print("=" * 80)
