@@ -5,6 +5,7 @@ import json
 proposer   = "xeroc"
 expiration = "2016-01-21T23:59:59"
 price_per_kbyte = 40  # in BTS
+broadcast = False
 
 
 class Wallet():
@@ -31,7 +32,9 @@ if __name__ == '__main__':
     print("=" * 80)
     print(json.dumps(changes, indent=4))
     print("=" * 80)
-    tx = graphene.rpc.propose_fee_change(proposer, expiration, changes, False)
+    tx = graphene.rpc.propose_fee_change(proposer, expiration, changes, broadcast)
     print(json.dumps(tx, indent=4))
-    print("=" * 80)
-    print("Set 'False' flag in line 34 to True in the transaction shall be broadcast!")
+
+    if not broadcast:
+        print("=" * 80)
+        print("Set broadcast to 'True' if the transaction shall be broadcast!")
