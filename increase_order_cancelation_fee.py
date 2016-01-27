@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     # General change of parameter
     changes = {"limit_order_cancel": {
-               "fee" : int(1 / scale * 1e5)
+               "fee" : int(0.01 / scale * 1e5)
                }}
 
     print("=" * 80)
