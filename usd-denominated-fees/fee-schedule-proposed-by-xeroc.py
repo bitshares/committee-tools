@@ -106,6 +106,8 @@
 #       * freebie
 #       * bunkerchainlabs
 #       * peermit
+#       * blocktrades.us
+#       * BitShares POS
 #
 #   Centralized exchanges are not part of this list since they mainly benefit from
 #   reduced transfer fees and don't run a business *whithin* BitShares (i.e. no
