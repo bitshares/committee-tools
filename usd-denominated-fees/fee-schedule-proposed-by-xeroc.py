@@ -10,7 +10,9 @@
 #     Furthermore, the costs associated with that operation are rather low because
 #     only account ids, asset ids and an amount are involved. Optional memos can be
 #     set a higher fee. The transfer operation is considered a *core* functionality
-#     of BitShares and its used should be incentivized.
+#     of BitShares and its used should be incentivized. This way, we can
+#     even attract more businesses that are looking for micropayment
+#     solutions.
 #
 # 2.) Another *core* functionality and major *value proposition* is the
 #     decentralized exchange (DEX) which is associated with a different set of feed.
@@ -77,6 +79,9 @@
 #     * among others
 #
 # Important factors:
+#
+# - All flat fees here are basic member fees. For LTM, most fees get cur
+#   by 80%
 #
 # - The flat fees below are denoted in USD even though the network asks for fees
 #   in BTS. This means that the BTS fees have to be adjusted from time to time
