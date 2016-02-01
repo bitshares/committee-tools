@@ -23,8 +23,10 @@
 #      * Upgrade protocol (hard fork) to
 #          * include BSIP#10 (if available and approved)
 #          * include distinction of bitassets and prediction markets (if available and approved)
-#          * forbidding specific operations for basic members (if available and approved)
-#          * remove specific operations from Referral program (if available and approved)
+#          * add committee controlled flags to prevent/allow specific operations 
+#          * to be used by basic members (if available and approved)
+#          * add committee controlled flags to include/exclude specific
+#            operations from the Referral program (if available and approved)
 #
 #   another 3(!!) months later but not earlier:
 #
