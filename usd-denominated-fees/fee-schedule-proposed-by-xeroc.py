@@ -2,7 +2,41 @@
 # Overview
 ####################################################################
 #
-# Rational:
+# Roadmap:
+#
+#   as soon as possible:
+#
+#      * Change the flat fee strucutre to incorporate customer feedback
+#        and improve competitiveness and liquidity.
+#      * Start implementation of BSIP#10 (if approved)
+#      * Start discussions about
+#          * requiring LTM-ship for specific operations (e.g. asset_create)
+#          * removing of specific operations from Referral program (e.g. account_upgrade)
+#      * Start Implementation for distiction of bitasset fees from prediction
+#        market fees
+#
+#   in 6 months (or later if bsip10 is approved and not ready by then):
+#
+#      * Upgrade protocol (hard fork) to
+#          * include BSIP#10 (if available and approved)
+#          * include distinction of bitassets and prediction markets (if available and approved)
+#          * forbidding specific operations for basic members (if available and approved)
+#          * remove specific operations from Referral program (if available and approved)
+#
+#   another 3(!!) months later:
+#
+#      * Reevaluate revenue of referral program and improve fee schedule given
+#        feedback of corresponding businesses and more statistics
+#
+#   periodically every 6-12 months:
+#
+#      * optional changes to the fee schedule
+#
+#   contantly:
+#
+#      * Evaluation of revenue and costs of the DAC and the referral program.
+#
+# Rational for changes to the flat fees now
 #
 # 1.) The transfer of value (any token) is a core functionality of many crypto
 #     currencies and business like dwolla and paypal. In order to be competitive,
