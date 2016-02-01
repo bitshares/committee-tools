@@ -14,8 +14,11 @@
 #          * removing of specific operations from Referral program (e.g. account_upgrade)
 #      * Start Implementation for distiction of bitasset fees from prediction
 #        market fees
+#      * Start Implemenation of methods to improve liquidity
+#          * either on protocol level (MAKER, DAC as bitasset provider, ...)
+#          * improving trading experience (GUI, API)
 #
-#   in 6 months (or later if bsip10 is approved and not ready by then):
+#   in 6 months (or later if bsip10 is approved and not ready by then) but not earlier:
 #
 #      * Upgrade protocol (hard fork) to
 #          * include BSIP#10 (if available and approved)
@@ -23,7 +26,7 @@
 #          * forbidding specific operations for basic members (if available and approved)
 #          * remove specific operations from Referral program (if available and approved)
 #
-#   another 3(!!) months later:
+#   another 3(!!) months later but not earlier:
 #
 #      * Reevaluate revenue of referral program and improve fee schedule given
 #        feedback of corresponding businesses and more statistics
