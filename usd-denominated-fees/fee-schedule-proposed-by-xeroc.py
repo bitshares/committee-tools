@@ -373,6 +373,8 @@ native_fees = {#####################################################
                #       proposition.
                #     * Symbols can only be registered once
                #     * We need to prevent squatting of premium symbols
+               #     * Prediction markets presumable use long_symbol
+               #       assets frequently.
                #
                # Conclusion
                #
@@ -389,7 +391,7 @@ native_fees = {#####################################################
                #          should cost about $1c extra
                #
                "asset_create": {
-                   "long_symbol": 50,
+                   "long_symbol": 20,
                    "symbol4": 2000,
                    "symbol3": 8000,
                    "price_per_kbyte": 0.01
