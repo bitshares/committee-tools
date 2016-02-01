@@ -319,10 +319,14 @@ native_fees = {#####################################################
                #     Since the purpose of this fee is merely to prevent spam
                #     attacks, we can set it at its bare minimum. Assuming an
                #     attacker can be allowed to put 10k transactions at a price
-               #     of $10, we get a fee of 0.001.
+               #     of $10, we get a fee of 0.0001. This is 10x smaller
+               #     than the order creation fee and effectively results
+               #     in a 90% refund on the order creation fee if (and
+               #     only if) the order has not been partially (or
+               #     fully) filled.
                #
                "limit_order_cancel": {
-                   "fee": 0.001
+                   "fee": 0.0001
                },
                #####################################################
                #
