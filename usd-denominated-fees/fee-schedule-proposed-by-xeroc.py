@@ -42,7 +42,7 @@
 #
 #     of the matched volume which is less than most centralized competitors even
 #     though we offer an increased security over them. This fee may be considered as
-#     a welcome package and may probably be increased to something close to 0.05% to
+#     a welcome package and may probably be increased to something close to 0.5% to
 #     reflect the decentralized and trust-free nature of the DEX.
 #
 # 3.) Now that we have reduced the fees for our two core functionalities, how can we
