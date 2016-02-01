@@ -871,14 +871,21 @@ native_fees = {#####################################################
                # Rational:
                #
                #     * This operation is considered a very rare operation
+               #     * This operation is used by active witnesses every
+               #       time they need to change the producing
+               #       witness_node. This mostly happens during witness
+               #       upgrade or for general maintain.
                #     * May be used to run backup witness servers
+               #     * If this fee is too high, witnesses may prefer to
+               #       miss blocks instead of switching over to a backup
+               #       machine
                #
                # Conclusion:
                #
                #     Anything above the bare minimum is considered harmful!
                #
                "witness_update": {
-                   "fee": 2
+                   "fee": 0.001
                },
                #####################################################
 
