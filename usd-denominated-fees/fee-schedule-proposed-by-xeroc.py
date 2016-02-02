@@ -504,17 +504,26 @@ native_fees = {#####################################################
                #
                #     * This operation should be discouraged to bring people
                #       to use the actual order books and provide liquidity.
-               #     * This operation should be considered a rare operation.
+               #     * This operation should be considered a rare
+               #       operation for regular bitassets, but will be used
+               #       on a regular basis in prediction markets
                #     * People seeking immediate liquidation should pay extra to
-               #       use this feature
+               #       use this feature. Settlement of bitassets can be
+               #       dicouraged by asking for a percentage fee of say
+               #       1%. This would also support the peg.
                #
                # Conclusion:
                #
-               #     * Any fee between $2-$50 seems to be reasonable considering
-               #       the above arguments.
+               #     * A high fee discourages settlement which is good,
+               #       but also discourages prediction markets.
+               #     * Settlement for (committee owned) bitassets can be
+               #       discouraged by asking for a percentage fee (in
+               #       the form of setting a settlement offset)
+               #     * Stettlement is still a core functionality and a
+               #       value proposition of BitShares
                #
                "asset_settle": {
-                   "fee": 10
+                   "fee": 0.05
                },
                #####################################################
                #
@@ -889,7 +898,7 @@ native_fees = {#####################################################
                #     Anything above the bare minimum is considered harmful!
                #
                "witness_update": {
-                   "fee": 0.001
+                   "fee": 0.01
                },
                #####################################################
 
@@ -1211,11 +1220,14 @@ native_fees = {#####################################################
                #       used frequently.
                #     * The payee will probably forward any costs to the payer
                #       thus discourage the use of withdrawal permissions.
+               #     * This operation is only added to the blockchain if
+               #       there is a valid "withdraw_permission" from that
+               #       account
                #
                # Conclusion:
                #
                #     * We set a minimum flat fee and have spam prevention from
-               #     a medium price per kbyte.
+               #       a medium price per kbyte.
                #
                "withdraw_permission_claim": {
                    "fee": 0.001,
