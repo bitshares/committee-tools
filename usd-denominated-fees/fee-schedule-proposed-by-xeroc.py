@@ -1089,7 +1089,7 @@ native_fees = {#####################################################
                #
                "blind_transfer": {
                    "fee": 3 * 0.024,
-                   "price_per_kbyte": 3 * 0.01
+                   "price_per_output": 3 * 0.01,
                },
                #####################################################
                #
@@ -1140,7 +1140,7 @@ native_fees = {#####################################################
                #
                "transfer_to_blind": {
                    "fee": 3 * 0.024,
-                   "price_per_kbyte": 3 * 0.01
+                   "price_per_output": 3 * 0.01
                },
                #####################################################
 
@@ -1323,14 +1323,12 @@ wallet_port           = 8092
 
 """ Connection settings to a witness node (websocket)
 """
-# witness_url           = "wss://bitshares.openledger.info/ws"
-witness_url           = "ws://testnet.bitshares.eu/ws"
+witness_url           = "wss://bitshares.openledger.info/ws"
 
 """ This defines the market to take the price from. The second parameter should
     really be the core asset (BTS, MUSE, TEST, ...)
 """
-# watch_markets         = ["USD:BTS"]
-watch_markets         = ["PEG.FAKEUSD:TEST"]
+watch_markets         = ["USD:BTS"]
 
 """ The proposer pays the fee for proposing the change to the committee
 """
