@@ -458,6 +458,9 @@ native_fees = {#####################################################
                #       higher fee.
                #     * The price of long symbols can be rather cheap to allow
                #       individuals that have certain plans to register an asset.
+               #     * Prediction market businesses that create new
+               #       assets frequenctly should upgrade to LTM to
+               #       reduce the fee by 80%.
                #     * Since the fixed fees are preventing spam and abuse of
                #       the blockchain as storage, the price per kbyte can be left
                #       rather low to allow lengthy descriptions:
@@ -465,7 +468,7 @@ native_fees = {#####################################################
                #          should cost about $1c extra
                #
                "asset_create": {
-                   "long_symbol": 20,
+                   "long_symbol": 50,
                    "symbol4": 2000,
                    "symbol3": 8000,
                    "price_per_kbyte": 0.01
