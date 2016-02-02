@@ -1,8 +1,15 @@
 ####################################################################
-# Overview
+# Goals of the Proposal
 ####################################################################
 #
+#   * Keep the referral program attractive
+#   * Reduce the transfer and trading fees
+#   * Distinguish unique selling points from core business
+#   * Keep all businesses satisfied as much as possible
+#
+####################################################################
 # Roadmap:
+####################################################################
 #
 #   as soon as possible:
 #
@@ -23,7 +30,7 @@
 #      * Upgrade protocol (hard fork) to
 #          * include BSIP#10 (if available and approved)
 #          * include distinction of bitassets and prediction markets (if available and approved)
-#          * add committee controlled flags to prevent/allow specific operations 
+#          * add committee controlled flags to prevent/allow specific operations
 #          * to be used by basic members (if available and approved)
 #          * add committee controlled flags to include/exclude specific
 #            operations from the Referral program (if available and approved)
@@ -40,6 +47,10 @@
 #   contantly:
 #
 #      * Evaluation of revenue and costs of the DAC and the referral program.
+#
+####################################################################
+# Overview
+####################################################################
 #
 # Rational for changes to the flat fees now
 #
@@ -134,6 +145,10 @@
 # - All fees in this document are proposals, ands thus not final. They further
 #   require committee's approval.
 #
+# - Shall this proposal be accepted, it will revise the 3x transfer
+#   price vision for STEALTH transfers to a 7x factor to let the
+#   investor(s) reach their ROI as has been initially promised.
+#
 # - It makes sense to incorporate the opinions and requirements of businesses
 #   running on top of BitShares as far as possible. We need them! Hence, we should
 #   talk to:
@@ -147,6 +162,7 @@
 #       * peermit
 #       * blocktrades.us
 #       * BitShares POS
+#       * OnceUponATime (STEALTH)
 #
 #   Centralized exchanges are not part of this list since they mainly benefit from
 #   reduced transfer fees and don't run a business *whithin* BitShares (i.e. no
@@ -164,10 +180,64 @@
 # in terms of fees in the beginning and once people realize the power of
 # decentralized trading, the fees could potentially be raised slightly.
 #
-#
-#
-#
-#
+# High Level Overview of changes
+#####################################################################################################################################################
+#                     fee price for                                  transfer differs by    0.231x (network:    0.1040 USD / proposal:    0.0240 USD)
+#         price_per_kbyte price for                                  transfer differs by    0.144x (network:    0.0693 USD / proposal:    0.0100 USD)
+#                     fee price for                        limit_order_cancel differs by    0.289x (network:    0.0003 USD / proposal:    0.0001 USD)
+#                     fee price for                         call_order_update differs by    0.289x (network:    0.0035 USD / proposal:    0.0010 USD)
+#             premium_fee price for                            account_create differs by    0.361x (network:   13.8620 USD / proposal:    5.0000 USD)
+#               basic_fee price for                            account_create differs by    0.304x (network:    0.3292 USD / proposal:    0.1000 USD)
+#         price_per_kbyte price for                            account_create differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                            account_update differs by    0.289x (network:    0.0035 USD / proposal:    0.0010 USD)
+#         price_per_kbyte price for                            account_update differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                         account_whitelist differs by    4.809x (network:    0.0208 USD / proposal:    0.1000 USD)
+# membership_lifetime_fee price for                           account_upgrade differs by    2.164x (network:   69.3098 USD / proposal:  150.0000 USD)
+#   membership_annual_fee price for                           account_upgrade differs by    1.443x (network:   13.8620 USD / proposal:   20.0000 USD)
+#                     fee price for                          account_transfer differs by    1.443x (network:    3.4655 USD / proposal:    5.0000 USD)
+#             long_symbol price for                              asset_create differs by    1.154x (network:   17.3275 USD / proposal:   20.0000 USD)
+#                 symbol3 price for                              asset_create differs by    2.308x (network: 3465.4913 USD / proposal: 8000.0000 USD)
+#                 symbol4 price for                              asset_create differs by    2.220x (network:  901.0277 USD / proposal: 2000.0000 USD)
+#         price_per_kbyte price for                              asset_create differs by    1.443x (network:    0.0069 USD / proposal:    0.0100 USD)
+#                     fee price for                              asset_update differs by   28.856x (network:    0.0693 USD / proposal:    2.0000 USD)
+#         price_per_kbyte price for                              asset_update differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                     asset_update_bitasset differs by    1.443x (network:    3.4655 USD / proposal:    5.0000 USD)
+#                     fee price for               asset_update_feed_producers differs by    1.443x (network:    3.4655 USD / proposal:    5.0000 USD)
+#                     fee price for                               asset_issue differs by    7.214x (network:    0.1386 USD / proposal:    1.0000 USD)
+#         price_per_kbyte price for                               asset_issue differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                             asset_reserve differs by    7.214x (network:    0.1386 USD / proposal:    1.0000 USD)
+#                     fee price for                       asset_fund_fee_pool differs by   72.140x (network:    0.0069 USD / proposal:    0.5000 USD)
+#                     fee price for                              asset_settle differs by    0.072x (network:    0.6931 USD / proposal:    0.0500 USD)
+#                     fee price for                       asset_global_settle differs by    1.443x (network:    3.4655 USD / proposal:    5.0000 USD)
+#                     fee price for                        asset_publish_feed differs by    0.289x (network:    0.0003 USD / proposal:    0.0001 USD)
+#                     fee price for                            witness_create differs by    1.443x (network:   34.6549 USD / proposal:   50.0000 USD)
+#                     fee price for                            witness_update differs by    0.072x (network:    0.1386 USD / proposal:    0.0100 USD)
+#                     fee price for                           proposal_create differs by    1.082x (network:    0.1386 USD / proposal:    0.1500 USD)
+#         price_per_kbyte price for                           proposal_create differs by    7.214x (network:    0.0069 USD / proposal:    0.0500 USD)
+#                     fee price for                           proposal_update differs by    0.721x (network:    0.0069 USD / proposal:    0.0050 USD)
+#         price_per_kbyte price for                           proposal_update differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                           proposal_delete differs by   72.140x (network:    0.0069 USD / proposal:    0.5000 USD)
+#                     fee price for                withdraw_permission_create differs by  144.280x (network:    0.0069 USD / proposal:    1.0000 USD)
+#                     fee price for                withdraw_permission_update differs by    0.721x (network:    0.1386 USD / proposal:    0.1000 USD)
+#                     fee price for                 withdraw_permission_claim differs by  999.000x (network:    0.0000 USD / proposal:    0.0010 USD)
+#         price_per_kbyte price for                 withdraw_permission_claim differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                   committee_member_create differs by  721.398x (network:    0.0069 USD / proposal:    5.0000 USD)
+#                     fee price for                   committee_member_update differs by 1442.797x (network:    0.0069 USD / proposal:   10.0000 USD)
+#                     fee price for committee_member_update_global_parameters differs by   36.070x (network:    0.1386 USD / proposal:    5.0000 USD)
+#                     fee price for                    vesting_balance_create differs by    0.144x (network:   34.6549 USD / proposal:    5.0000 USD)
+#                     fee price for                  vesting_balance_withdraw differs by  288.559x (network:    0.0069 USD / proposal:    2.0000 USD)
+#                     fee price for                             worker_create differs by  721.398x (network:    0.0069 USD / proposal:    5.0000 USD)
+#                     fee price for                                    custom differs by   14.428x (network:    0.0069 USD / proposal:    0.1000 USD)
+#         price_per_kbyte price for                                    custom differs by    1.443x (network:    0.0069 USD / proposal:    0.0100 USD)
+#                     fee price for                                    assert differs by   72.140x (network:    0.1386 USD / proposal:   10.0000 USD)
+#                     fee price for                         override_transfer differs by   28.856x (network:    0.0347 USD / proposal:    1.0000 USD)
+#         price_per_kbyte price for                         override_transfer differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
+#        price_per_output price for                         transfer_to_blind differs by    1.010x (network:    0.0693 USD / proposal:    0.0700 USD)
+#                     fee price for                         transfer_to_blind differs by    3.030x (network:    0.0693 USD / proposal:    0.2100 USD)
+#                     fee price for                       transfer_from_blind differs by    3.030x (network:    0.0693 USD / proposal:    0.2100 USD)
+
+#####################################################################################################################################################
+
 native_fees = {#####################################################
                # REGULAR OPERATIONS
                #####################################################
@@ -1082,24 +1152,14 @@ native_fees = {#####################################################
                #     Blind transfers are in the STEALTH program. This operation
                #     is for blind->blind transfers.
                #
-               # Rational:
+               #     The fee for this operation cannot be set by the
+               #     committee, but by the owners of the STEALTH asset
+               #     within the FBA program.
                #
-               #     * a percentage of this fee goes to the FBA STEALTH
-               #     * the privacy mode is an integral part of BitShares
-               #     * this is considered to be a highly used operation
-               #     * the costs for the end user are predefined from the
-               #       STEALTH proposal as 3 times the transfer fee
-               #
-               # Conclusion:
-               #
-               #     * Not much can be discussed here as the STEALTH worker has
-               #       been approved by shareholders including the rule for a 3
-               #       times the transfer fee requirement.
-               #
-               "blind_transfer": {
-                   "fee": 3 * 0.024,
-                   "price_per_output": 3 * 0.01,
-               },
+               #"blind_transfer": {
+               #    "fee": 0.21,
+               #    "price_per_output": 0.07,
+               #},
                #####################################################
                #
                # Description:
@@ -1124,7 +1184,7 @@ native_fees = {#####################################################
                #       times the transfer fee requirement.
                #
                "transfer_from_blind": {
-                   "fee": 3 * 0.024,
+                   "fee": 0.21,
                },
                #####################################################
                #
@@ -1148,8 +1208,8 @@ native_fees = {#####################################################
                #       times the transfer fee requirement.
                #
                "transfer_to_blind": {
-                   "fee": 3 * 0.024,
-                   "price_per_output": 3 * 0.01
+                   "fee": 0.21,
+                   "price_per_output": 0.07
                },
                #####################################################
 
