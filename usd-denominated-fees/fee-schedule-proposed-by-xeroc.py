@@ -937,6 +937,12 @@ native_fees = {#####################################################
                #     * this operation does not participate in the referral
                #       program
                #     * a too high fee could be perceived as gate-keeping
+               #     * miners and the like in POW based networks will pay much more for
+               #       their equipment to produce blocks in other networks.
+               #     * Those that pay this fee will be more likely to provide better
+               #       overall resources to the network instead of bargain basement VMs in
+               #       oversold networks.
+               #     * ROI depends on the workers pay, of course.
                #
                # Conclusion
                #
