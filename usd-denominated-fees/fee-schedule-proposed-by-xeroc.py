@@ -1366,17 +1366,16 @@ native_fees = {#####################################################
                #
                #     * this order corresponds to the update operation and is
                #       considered a rare operation
-               #     * we should not discourage the use of this feature by
-               #       having an expensive cancellation fee
+               #     * this operation is only valid once and only for existing
+               #       withdraw permissions
                #
                # Conclusion:
                #
-               #     * Given that this is a rare operation, and want to
-               #       encourage people to use it, we cannot ask for more than
-               #       $10c.
+               #     * withdraw_permission_delete should be encouraged
+               #       since it releases resources.
                #
                "withdraw_permission_delete": {
-                   "fee": 0.10
+                   "fee": 0
                },
                #####################################################
 
