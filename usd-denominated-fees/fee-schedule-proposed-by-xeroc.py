@@ -56,6 +56,7 @@
 #            to be used by basic members but allowed for premium members (LTM)
 #          * add committee controlled flags to include/exclude specific
 #            operations from the referral program
+#          * add period-dependent fee for withdraw_permission_claim
 #
 #   6 months after the last fee schedule change:
 #
@@ -1267,7 +1268,17 @@ native_fees = {#####################################################
                #     * Given that you can here define an upper limit for
                #       withdrawals, the extra functionality should be paid by the
                #       user.
-               #     * withdraw permissions are assumed to be rather rare.
+               #     * Use cases for rare transactions of this type
+               #            * pay rent
+               #            * allow credit card withdrawals
+               #            * mobile phone carriers ..
+               #            * etc.
+               #     * Use cases for more frequent transactions of this type:
+               #            * newletter subscriptions
+               #            * multimedia/video on demand subscriptions
+               #            * etc.
+               #     * withdraw permissions are assumed to be rather
+               #       frequent given the many types of subscriptions
                #
                # Conclusion:
                #
@@ -1277,7 +1288,7 @@ native_fees = {#####################################################
                #       considered fair.
                #
                "withdraw_permission_create": {
-                   "fee": 1
+                   "fee": 0.15
                },
                #####################################################
                #
@@ -1291,15 +1302,18 @@ native_fees = {#####################################################
                #     * Since the creation of a withdraw permission has already
                #       paid a fee, updating a permission should be at least
                #       less than the cost for deleting and creating a new one.
+               #     * This operation is only possible if the
+               #       withdraw_permission already exists.
+               #
                #
                # Conclusion:
                #
                #     * Given that this is a rare operation, and want to
-               #       encourage people to use it, we cannot ask for more than
-               #       $10c.
+               #       encourage people to use it, we cannot ask for
+               #       $1c.
                #
                "withdraw_permission_update": {
-                   "fee": 0.10
+                   "fee": 0.01
                },
                #####################################################
                #
@@ -1318,14 +1332,28 @@ native_fees = {#####################################################
                #     * This operation is only added to the blockchain if
                #       there is a valid "withdraw_permission" from that
                #       account
+               #     * Subscriptions amounts may differ from business to
+               #       business
+               #     * Every business can decide how often to pay this
+               #       fee and we need to encourage them to reduce the
+               #       frequency.
+               #     * The withdraw_permission allows to partially
+               #       operate balances off-chain (e.g. monthly bills
+               #       for many off-chain microtransactions)
                #
                # Conclusion:
                #
-               #     * We set a minimum flat fee and have spam prevention from
-               #       a medium price per kbyte.
+               #     * We set the fee to 5x the transfer fee to make a
+               #       compromise between
+               #         * encouraging off-chain  microtransactions
+               #           being synchornized with the chain once per
+               #           week/month
+               #         * allowing cheap credit card integration
+               #         * not discouraging high monthly payments such
+               #           as rent, electricity bills, etc.
                #
                "withdraw_permission_claim": {
-                   "fee": 0.001,
+                   "fee": 5 * 0.0240,
                    "price_per_kbyte": 0.007
                },
                #####################################################
