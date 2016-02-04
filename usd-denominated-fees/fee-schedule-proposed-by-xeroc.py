@@ -1,14 +1,35 @@
 ####################################################################
-# Goals of the Proposal
+# Shareholder Summary
 ####################################################################
 #
-#   * Keep the referral program attractive
-#   * Reduce the transfer and trading fees
-#   * Distinguish unique selling points from core business
-#   * Keep all businesses satisfied as much as possible
+# Thanks to some keen external developers we are soon to see what is referred to as
+# BSIP#10 and will allow percentage based transfer fees. However, the development is quite
+# intensive and will take some more weeks to complete.
+#
+# To resolve some major issues that the shareholders, the BitShares community and most of
+# the existing businesses have voiced, the committee has decided to step up and act now
+# with the option for modifications once BSIP#10 is available.
+#
+# After several days of intensive discussion, we've constructed a whole new fee schedule
+# for the BitShares ecosystem that has **drastically reduces** the fees required for the
+# core features, namely, transfers and trading, but increases the fees of more specialized
+# operations to keep the referral program attractive and the net loss of the company at a
+# low level (more details below).
+#
+# Even though this fee schedule has had a lot of thoughts, we are certain that once
+# BSIP#10 is available, we will implement it for most bitassets owned by the committee.
+# In the mean time, however, we would like to give everyone the opportunity to make use of
+# a low flat fee for all transfers with in the network and have decided to ask for $0.0240
+# (6 BTS at current valuation) per transfer, flat!
+# We would further like to encourage traders and market makers to provide liquidity by
+# asking for only $0.001 per created order (with 90% refund on cancelation if unfilled)
+# and a low 0.15% trading fee for committee owned assets such as bitUSD, etc.
+#
+# Additionally, going forward with this fee schedule, we will track the USD denomination
+# of fees and thus update the schedule if the valuation of BTS changes.
 #
 ####################################################################
-# Roadmap:
+# Roadmap
 ####################################################################
 #
 #   as soon as possible:
@@ -25,28 +46,28 @@
 #          * either on protocol level (MAKER, DAC as bitasset provider, ...)
 #          * improving trading experience (GUI, API)
 #
-#   in 6 months (or later if bsip10 is approved and not ready by then) but not earlier:
+#   as soon as Bsip10 is approved and ready:
 #
-#      * Upgrade protocol (hard fork) to
-#          * include BSIP#10 (if available and approved)
-#          * include distinction of bitassets and prediction markets (if available and approved)
+#      * Upgrade protocol (hard fork) to include BSIP#10
+#      * Modify committee owned assets to ask for percentage transfer fees
+#      * Start discussion about possible protocol modifications:
+#          * protocol upgrade to distinguish fees for bitassets and prediction markets
 #          * add committee controlled flags to prevent/allow specific operations
-#          * to be used by basic members (if available and approved)
+#            to be used by basic members but allowed for premium members (LTM)
 #          * add committee controlled flags to include/exclude specific
-#            operations from the Referral program (if available and approved)
+#            operations from the referral program
 #
-#   another 3(!!) months later but not earlier:
+#   6 months after the last fee schedule change:
+#
+#      * obtain input and feedback from businesses taking part in the referral program
+#      * optional minor modifications to the fee schedule
+#
+#   periodically every 12 months after the last change of the fee schedule:
 #
 #      * Reevaluate revenue of referral program and improve fee schedule given
 #        feedback of corresponding businesses and more statistics
-#
-#   periodically every 6-12 months:
-#
-#      * optional changes to the fee schedule
-#
-#   contantly:
-#
 #      * Evaluation of revenue and costs of the DAC and the referral program.
+#      * optional changes to the fee schedule
 #
 ####################################################################
 # Overview
