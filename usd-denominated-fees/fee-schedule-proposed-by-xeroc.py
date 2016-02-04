@@ -203,60 +203,61 @@
 #
 # High Level Overview of changes
 #####################################################################################################################################################
-#                     fee price for                                  transfer differs by    0.231x (network:    0.1040 USD / proposal:    0.0240 USD)
-#         price_per_kbyte price for                                  transfer differs by    0.144x (network:    0.0693 USD / proposal:    0.0100 USD)
-#                     fee price for                        limit_order_cancel differs by    0.289x (network:    0.0003 USD / proposal:    0.0001 USD)
-#                     fee price for                         call_order_update differs by    0.289x (network:    0.0035 USD / proposal:    0.0010 USD)
-#             premium_fee price for                            account_create differs by    0.361x (network:   13.8620 USD / proposal:    5.0000 USD)
-#               basic_fee price for                            account_create differs by    0.304x (network:    0.3292 USD / proposal:    0.1000 USD)
-#         price_per_kbyte price for                            account_create differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
-#                     fee price for                            account_update differs by    0.289x (network:    0.0035 USD / proposal:    0.0010 USD)
-#         price_per_kbyte price for                            account_update differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
-#                     fee price for                         account_whitelist differs by    4.809x (network:    0.0208 USD / proposal:    0.1000 USD)
-# membership_lifetime_fee price for                           account_upgrade differs by    2.164x (network:   69.3098 USD / proposal:  150.0000 USD)
-#   membership_annual_fee price for                           account_upgrade differs by    1.443x (network:   13.8620 USD / proposal:   20.0000 USD)
-#                     fee price for                          account_transfer differs by    1.443x (network:    3.4655 USD / proposal:    5.0000 USD)
-#             long_symbol price for                              asset_create differs by    1.154x (network:   17.3275 USD / proposal:   20.0000 USD)
-#                 symbol3 price for                              asset_create differs by    2.308x (network: 3465.4913 USD / proposal: 8000.0000 USD)
-#                 symbol4 price for                              asset_create differs by    2.220x (network:  901.0277 USD / proposal: 2000.0000 USD)
-#         price_per_kbyte price for                              asset_create differs by    1.443x (network:    0.0069 USD / proposal:    0.0100 USD)
-#                     fee price for                              asset_update differs by   28.856x (network:    0.0693 USD / proposal:    2.0000 USD)
-#         price_per_kbyte price for                              asset_update differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
-#                     fee price for                     asset_update_bitasset differs by    1.443x (network:    3.4655 USD / proposal:    5.0000 USD)
-#                     fee price for               asset_update_feed_producers differs by    1.443x (network:    3.4655 USD / proposal:    5.0000 USD)
-#                     fee price for                               asset_issue differs by    7.214x (network:    0.1386 USD / proposal:    1.0000 USD)
-#         price_per_kbyte price for                               asset_issue differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
-#                     fee price for                             asset_reserve differs by    7.214x (network:    0.1386 USD / proposal:    1.0000 USD)
-#                     fee price for                       asset_fund_fee_pool differs by   72.140x (network:    0.0069 USD / proposal:    0.5000 USD)
-#                     fee price for                              asset_settle differs by    0.072x (network:    0.6931 USD / proposal:    0.0500 USD)
-#                     fee price for                       asset_global_settle differs by    1.443x (network:    3.4655 USD / proposal:    5.0000 USD)
-#                     fee price for                        asset_publish_feed differs by    0.289x (network:    0.0003 USD / proposal:    0.0001 USD)
-#                     fee price for                            witness_create differs by    1.443x (network:   34.6549 USD / proposal:   50.0000 USD)
-#                     fee price for                            witness_update differs by    0.072x (network:    0.1386 USD / proposal:    0.0100 USD)
-#                     fee price for                           proposal_create differs by    1.082x (network:    0.1386 USD / proposal:    0.1500 USD)
-#         price_per_kbyte price for                           proposal_create differs by    7.214x (network:    0.0069 USD / proposal:    0.0500 USD)
-#                     fee price for                           proposal_update differs by    0.721x (network:    0.0069 USD / proposal:    0.0050 USD)
-#         price_per_kbyte price for                           proposal_update differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
-#                     fee price for                           proposal_delete differs by   72.140x (network:    0.0069 USD / proposal:    0.5000 USD)
-#                     fee price for                withdraw_permission_create differs by  144.280x (network:    0.0069 USD / proposal:    1.0000 USD)
-#                     fee price for                withdraw_permission_update differs by    0.721x (network:    0.1386 USD / proposal:    0.1000 USD)
+#                     fee price for                                  transfer differs by    0.233x (network:    0.1028 USD / proposal:    0.0240 USD)
+#         price_per_kbyte price for                                  transfer differs by    0.146x (network:    0.0686 USD / proposal:    0.0100 USD)
+#                     fee price for                        limit_order_create differs by    0.029x (network:    0.0343 USD / proposal:    0.0010 USD)
+#                     fee price for                        limit_order_cancel differs by    0.292x (network:    0.0003 USD / proposal:    0.0001 USD)
+#                     fee price for                         call_order_update differs by    0.292x (network:    0.0034 USD / proposal:    0.0010 USD)
+#               basic_fee price for                            account_create differs by    0.307x (network:    0.3256 USD / proposal:    0.1000 USD)
+#             premium_fee price for                            account_create differs by    0.365x (network:   13.7115 USD / proposal:    5.0000 USD)
+#         price_per_kbyte price for                            account_create differs by    1.021x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                            account_update differs by    0.292x (network:    0.0034 USD / proposal:    0.0010 USD)
+#         price_per_kbyte price for                            account_update differs by    1.021x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                         account_whitelist differs by    4.862x (network:    0.0206 USD / proposal:    0.1000 USD)
+#   membership_annual_fee price for                           account_upgrade differs by    1.459x (network:   13.7115 USD / proposal:   20.0000 USD)
+# membership_lifetime_fee price for                           account_upgrade differs by    2.188x (network:   68.5577 USD / proposal:  150.0000 USD)
+#                     fee price for                          account_transfer differs by    1.459x (network:    3.4279 USD / proposal:    5.0000 USD)
+#                 symbol4 price for                              asset_create differs by    2.244x (network:  891.2503 USD / proposal: 2000.0000 USD)
+#         price_per_kbyte price for                              asset_create differs by    1.459x (network:    0.0069 USD / proposal:    0.0100 USD)
+#                 symbol3 price for                              asset_create differs by    2.334x (network: 3427.8859 USD / proposal: 8000.0000 USD)
+#             long_symbol price for                              asset_create differs by    2.917x (network:   17.1394 USD / proposal:   50.0000 USD)
+#                     fee price for                              asset_update differs by   29.173x (network:    0.0686 USD / proposal:    2.0000 USD)
+#         price_per_kbyte price for                              asset_update differs by    1.021x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                     asset_update_bitasset differs by    1.459x (network:    3.4279 USD / proposal:    5.0000 USD)
+#                     fee price for               asset_update_feed_producers differs by    1.459x (network:    3.4279 USD / proposal:    5.0000 USD)
+#                     fee price for                               asset_issue differs by    7.293x (network:    0.1371 USD / proposal:    1.0000 USD)
+#         price_per_kbyte price for                               asset_issue differs by    1.021x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                             asset_reserve differs by    7.293x (network:    0.1371 USD / proposal:    1.0000 USD)
+#                     fee price for                       asset_fund_fee_pool differs by   72.931x (network:    0.0069 USD / proposal:    0.5000 USD)
+#                     fee price for                              asset_settle differs by    0.073x (network:    0.6856 USD / proposal:    0.0500 USD)
+#                     fee price for                       asset_global_settle differs by    1.459x (network:    3.4279 USD / proposal:    5.0000 USD)
+#                     fee price for                        asset_publish_feed differs by    0.292x (network:    0.0003 USD / proposal:    0.0001 USD)
+#                     fee price for                            witness_create differs by    1.459x (network:   34.2789 USD / proposal:   50.0000 USD)
+#                     fee price for                            witness_update differs by    0.073x (network:    0.1371 USD / proposal:    0.0100 USD)
+#                     fee price for                           proposal_create differs by    1.094x (network:    0.1371 USD / proposal:    0.1500 USD)
+#         price_per_kbyte price for                           proposal_create differs by    7.293x (network:    0.0069 USD / proposal:    0.0500 USD)
+#                     fee price for                           proposal_update differs by    0.729x (network:    0.0069 USD / proposal:    0.0050 USD)
+#         price_per_kbyte price for                           proposal_update differs by    1.021x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                           proposal_delete differs by    0.000x (network:    0.0069 USD / proposal:    0.0000 USD)
+#                     fee price for                withdraw_permission_create differs by  145.863x (network:    0.0069 USD / proposal:    1.0000 USD)
+#                     fee price for                withdraw_permission_update differs by    0.729x (network:    0.1371 USD / proposal:    0.1000 USD)
 #                     fee price for                 withdraw_permission_claim differs by  999.000x (network:    0.0000 USD / proposal:    0.0010 USD)
-#         price_per_kbyte price for                 withdraw_permission_claim differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
-#                     fee price for                   committee_member_create differs by  721.398x (network:    0.0069 USD / proposal:    5.0000 USD)
-#                     fee price for                   committee_member_update differs by 1442.797x (network:    0.0069 USD / proposal:   10.0000 USD)
-#                     fee price for committee_member_update_global_parameters differs by   36.070x (network:    0.1386 USD / proposal:    5.0000 USD)
-#                     fee price for                    vesting_balance_create differs by    0.144x (network:   34.6549 USD / proposal:    5.0000 USD)
-#                     fee price for                  vesting_balance_withdraw differs by  288.559x (network:    0.0069 USD / proposal:    2.0000 USD)
-#                     fee price for                             worker_create differs by  721.398x (network:    0.0069 USD / proposal:    5.0000 USD)
-#                     fee price for                                    custom differs by   14.428x (network:    0.0069 USD / proposal:    0.1000 USD)
-#         price_per_kbyte price for                                    custom differs by    1.443x (network:    0.0069 USD / proposal:    0.0100 USD)
-#                     fee price for                                    assert differs by   72.140x (network:    0.1386 USD / proposal:   10.0000 USD)
-#                     fee price for                         override_transfer differs by   28.856x (network:    0.0347 USD / proposal:    1.0000 USD)
-#         price_per_kbyte price for                         override_transfer differs by    1.010x (network:    0.0069 USD / proposal:    0.0070 USD)
-#        price_per_output price for                         transfer_to_blind differs by    1.010x (network:    0.0693 USD / proposal:    0.0700 USD)
-#                     fee price for                         transfer_to_blind differs by    3.030x (network:    0.0693 USD / proposal:    0.2100 USD)
-#                     fee price for                       transfer_from_blind differs by    3.030x (network:    0.0693 USD / proposal:    0.2100 USD)
-
+#         price_per_kbyte price for                 withdraw_permission_claim differs by    1.021x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                withdraw_permission_delete differs by    0.003x (network:   34.2789 USD / proposal:    0.1000 USD)
+#                     fee price for                   committee_member_create differs by  729.312x (network:    0.0069 USD / proposal:    5.0000 USD)
+#                     fee price for                   committee_member_update differs by 1458.625x (network:    0.0069 USD / proposal:   10.0000 USD)
+#                     fee price for committee_member_update_global_parameters differs by   36.466x (network:    0.1371 USD / proposal:    5.0000 USD)
+#                     fee price for                    vesting_balance_create differs by    0.146x (network:   34.2789 USD / proposal:    5.0000 USD)
+#                     fee price for                  vesting_balance_withdraw differs by  291.725x (network:    0.0069 USD / proposal:    2.0000 USD)
+#                     fee price for                             worker_create differs by  729.312x (network:    0.0069 USD / proposal:    5.0000 USD)
+#                     fee price for                                    custom differs by   14.586x (network:    0.0069 USD / proposal:    0.1000 USD)
+#         price_per_kbyte price for                                    custom differs by    1.459x (network:    0.0069 USD / proposal:    0.0100 USD)
+#                     fee price for                                    assert differs by   72.931x (network:    0.1371 USD / proposal:   10.0000 USD)
+#                     fee price for                         override_transfer differs by   29.173x (network:    0.0343 USD / proposal:    1.0000 USD)
+#         price_per_kbyte price for                         override_transfer differs by    1.021x (network:    0.0069 USD / proposal:    0.0070 USD)
+#                     fee price for                         transfer_to_blind differs by    3.063x (network:    0.0686 USD / proposal:    0.2100 USD)
+#        price_per_output price for                         transfer_to_blind differs by    1.021x (network:    0.0686 USD / proposal:    0.0700 USD)
+#                     fee price for                       transfer_from_blind differs by    3.063x (network:    0.0686 USD / proposal:    0.2100 USD)
 #####################################################################################################################################################
 
 native_fees = {#####################################################
@@ -1053,14 +1054,18 @@ native_fees = {#####################################################
                #
                #     * This can be considered a rare operation
                #     * Mostly interesting for committee and governance actions
+               #     * This operation releases resouces and should thus be encouraged in
+               #       contrast to proposal_create
                #
                # Conclusion:
                #
-               #     * Any fee between $0.10-$2 seems to be reasonable considering
-               #       the above arguments.
+               #     * This operation is for free to encourage people to remove
+               #       unnecessariy proposals from the witnesses resources
+               #     * It cannot be used for spamming since only existing proposals can be
+               #       deleted (once)
                #
                "proposal_delete": {
-                   "fee": 0.50
+                   "fee": 0.00
                },
                #####################################################
                #
