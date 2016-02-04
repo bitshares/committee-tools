@@ -25,7 +25,10 @@ if __name__ == '__main__':
         # derive in USD
         for o in f[1]:
             if opName in config.native_fees :
-                fee_named[opName][o] = int(f[1][o]) / 10 ** core_asset["precision"] * scale / core_exchange_rate
+                if config.force_integer_core_fee :
+                    fee_named[opName][o] = int(int(f[1][o]) / 10 ** core_asset["precision"]) * scale / core_exchange_rate
+                else:
+                    fee_named[opName][o] = int(f[1][o]) / 10 ** core_asset["precision"] * scale / core_exchange_rate
                 scalingfactor = (config.native_fees[opName][o] / fee_named[opName][o]) if fee_named[opName][o] else 999
                 if math.fabs(scalingfactor) > config.tolerance_percentage / 100:
                     print("%23s price for %41s differs by %8.3fx (network: %9.4f USD / proposal: %9.4f USD)" %

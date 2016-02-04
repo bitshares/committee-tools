@@ -26,7 +26,10 @@ if __name__ == '__main__':
     new_fees = config.native_fees.copy()
     for opName in new_fees:
         for f in new_fees[opName]:
-            new_fees[opName][f] = int(config.native_fees[opName][f] * 10 ** core_asset["precision"] / scale * core_exchange_rate)
+            if config.force_integer_core_fee :
+                new_fees[opName][f] = int(int(config.native_fees[opName][f] / scale * core_exchange_rate) * 10 ** core_asset["precision"])
+            else:
+                new_fees[opName][f] = int(config.native_fees[opName][f] * 10 ** core_asset["precision"] / scale * core_exchange_rate)
 
     tx = graphene.propose_fee_change(config.proposer, expiration, new_fees, config.broadcast)
     new_fees = tx["operations"][0][1]["proposed_ops"][0]["op"][1]["new_parameters"]["current_fees"]
