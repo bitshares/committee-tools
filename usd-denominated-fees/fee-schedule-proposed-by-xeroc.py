@@ -1343,7 +1343,7 @@ native_fees = {#####################################################
                #
                # Conclusion:
                #
-               #     * We set the fee to 5x the transfer fee to make a
+               #     * We set the fee to 0.8x the transfer fee to make a
                #       compromise between
                #         * encouraging off-chain  microtransactions
                #           being synchornized with the chain once per
@@ -1353,7 +1353,7 @@ native_fees = {#####################################################
                #           as rent, electricity bills, etc.
                #
                "withdraw_permission_claim": {
-                   "fee": 5 * 0.0240,
+                   "fee": 0.8 * 0.0240,
                    "price_per_kbyte": 0.007
                },
                #####################################################
