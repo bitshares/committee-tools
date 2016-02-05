@@ -765,9 +765,20 @@ native_fees = {#####################################################
                #     * For transfers, the break even point is reached after 830
                #       transfers (assuming no memo)
                #
+               # Changes:
+               #
+               #     * LTM fee shall be set to $120 instead of $150, to 
+               #          a) keep compensation of the reduced income for the referral program 
+               #             due to the lowered transfer and trading fees. 
+               #          b) Keep it above the originally offered $100.
+               #     * LTM fee may be raised with each new feature that comes 
+               #       (ie. Bond Market, MAS). Use of advanced features may require LTM.
+               #     * Upgrade fee can be reduced occasionally to encourage upgrades for newly
+               #       coming LTM-only features.
+               #
                "account_upgrade": {
-                   "membership_annual_fee": 20,
-                   "membership_lifetime_fee": 150
+                   "membership_annual_fee": 15,
+                   "membership_lifetime_fee": 120
                },
                #####################################################
                #
