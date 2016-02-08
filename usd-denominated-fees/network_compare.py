@@ -30,8 +30,9 @@ if __name__ == '__main__':
                 else:
                     fee_named[opName][o] = int(f[1][o]) / 10 ** core_asset["precision"] * scale / core_exchange_rate
                 scalingfactor = (config.native_fees[opName][o] / fee_named[opName][o]) if fee_named[opName][o] else 999
-                if math.fabs(scalingfactor) > config.tolerance_percentage / 100:
-                    print("%23s price for %41s differs by %8.3fx (network: %9.4f USD / proposal: %9.4f USD)" %
-                          (o, opName, scalingfactor, fee_named[opName][o], config.native_fees[opName][o]))
+                # if math.fabs(scalingfactor) > config.tolerance_percentage / 100:
+                #     print("=" * 30 + "Warning:" + "=" *30)
+                print("%23s price for %41s differs by %8.3fx (network: %9.4f USD / proposal: %9.4f USD)" %
+                      (o, opName, scalingfactor, fee_named[opName][o], config.native_fees[opName][o]))
             else :
                 print("[Warning] The operation %s is not defined in your set of native fees!" % opName)
