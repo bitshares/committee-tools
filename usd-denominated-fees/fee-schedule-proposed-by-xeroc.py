@@ -1148,6 +1148,8 @@ native_fees = {#####################################################
                # Rational:
                #
                #     * this should be considered a extremely rare operations
+               #     * this operation is used to update fees as well as
+               #       other global blockchain parameters
                #     * the fee is always going to be paid by the
                #       committee-account
                #     * It doesn't really matter what fee is chosen here. If the
@@ -1160,9 +1162,14 @@ native_fees = {#####################################################
                # Conclusion:
                #
                #     * We can set anything over here, it doesn't really matter.
+               #     * Since Committee is now tracking the fee in USD, we should have this
+               #     fee quite low, otherwise, committee will pay funds that belong to the
+               #     business, to the reserver pool, that belongs to the business (read:
+               #     shareholders), but lose the ability to interact with the blockchain
+               #     if they have no more funds.
                #
                "committee_member_update_global_parameters": {
-                   "fee": 5
+                   "fee": 0.01
                },
                #####################################################
                #
