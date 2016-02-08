@@ -205,7 +205,19 @@
 # in terms of fees in the beginning and once people realize the power of
 # decentralized trading, the fees could potentially be raised slightly.
 #
-# High Level Overview of changes
+# High Level Overview of changes:
+#
+#    * `fee` is a flat price that has to be paid per operation
+#    * `price_per_kbyte` is a fee that has to be paid per kilobyte of transaction size
+#      (i.e. longer memos cost more than shorter memos)
+#    * `account_create` distinguishes `premium_fee` names (expensive) from `basic_fee`
+#      names (cheap)
+#    * `account_upgrade` distinguishes between a annual subscription and a life time
+#      subscription
+#    * `asset_create` distinguishes between the number of characters of the symbol (i.e.
+#      short symbols are very expensive, longer ones are cheap)
+#    * blind transfers have to pay per output.
+#
 #####################################################################################################################################################
 #         price_per_kbyte price for                                  transfer differs by    0.133x (network:    0.0754 USD / proposal:    0.0100 USD)
 #                     fee price for                                  transfer differs by    0.159x (network:    0.1132 USD / proposal:    0.0180 USD)
