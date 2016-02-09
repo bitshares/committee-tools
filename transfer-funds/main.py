@@ -35,6 +35,6 @@ if __name__ == '__main__':
     client.set_fees_on_builder_transaction(buildHandle, "1.3.0")
 
     # Sign and broadcast
-    tx = client.sign_builder_transaction(buildHandle, False)
+    tx = client.sign_builder_transaction(buildHandle, config.broadcast)
 
     print(json.dumps(tx, indent=4))

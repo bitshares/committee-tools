@@ -10,4 +10,6 @@ transfer_to      = "committee-trade"
 transfer_percentage = 80
 
 # expiration of the proposal
-expiration       = "2015-12-31T23:59:59"
+expiration       = "2016-02-10T23:59:59"
+
+broadcast        = False
