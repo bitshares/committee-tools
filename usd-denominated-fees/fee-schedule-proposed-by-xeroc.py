@@ -288,7 +288,7 @@
 #                     fee price for                withdraw_permission_delete differs by    0.000x (network:   37.7170 USD / proposal:    0.0000 USD)
 #                     fee price for                   committee_member_create differs by  662.831x (network:    0.0075 USD / proposal:    5.0000 USD)
 #                     fee price for                   committee_member_update differs by 1325.661x (network:    0.0075 USD / proposal:   10.0000 USD)
-#                     fee price for committee_member_update_global_parameters differs by    0.066x (network:    0.1509 USD / proposal:    0.0100 USD)
+#                     fee price for committee_member_update_global_parameters differs by    0.000x (network:    0.1419 USD / proposal:    0.0000 USD)
 #                     fee price for                    vesting_balance_create differs by    0.133x (network:   37.7170 USD / proposal:    5.0000 USD)
 #                     fee price for                  vesting_balance_withdraw differs by  265.132x (network:    0.0075 USD / proposal:    2.0000 USD)
 #                     fee price for                             worker_create differs by  662.831x (network:    0.0075 USD / proposal:    5.0000 USD)
@@ -302,6 +302,27 @@
 #                     fee price for                       transfer_from_blind differs by    2.784x (network:    0.0754 USD / proposal:    0.2100 USD)
 # ```
 #####################################################################################################################################################
+
+market_fees = {"AUD": 0.10 / 100,  # 0.10%
+               "BTC": 0.10 / 100,  # 0.10%
+               "CAD": 0.10 / 100,  # 0.10%
+               "CHF": 0.10 / 100,  # 0.10%
+               "CNY": 0.10 / 100,  # 0.10%
+               "EUR": 0.10 / 100,  # 0.10%
+               "GAS": 0.10 / 100,  # 0.10%
+               "GBP": 0.10 / 100,  # 0.10%
+               "GOLD": 0.10 / 100,  # 0.10%
+               "HKD": 0.10 / 100,  # 0.10%
+               "JPY": 0.10 / 100,  # 0.10%
+               "KRW": 0.10 / 100,  # 0.10%
+               "MXN": 0.10 / 100,  # 0.10%
+               "NZD": 0.10 / 100,  # 0.10%
+               "OIL": 0.10 / 100,  # 0.10%
+               "SGD": 0.10 / 100,  # 0.10%
+               "SILVER": 0.10 / 100,  # 0.10%
+               "TRY": 0.10 / 100,  # 0.10%
+               "USD": 0.10 / 100,  # 0.10%
+               }
 
 native_fees = {#####################################################
                # REGULAR OPERATIONS
@@ -1205,13 +1226,15 @@ native_fees = {#####################################################
                #
                #     * We can set anything over here, it doesn't really matter.
                #     * Since Committee is now tracking the fee in USD, we should have this
-               #     fee quite low, otherwise, committee will pay funds that belong to the
-               #     business, to the reserver pool, that belongs to the business (read:
-               #     shareholders), but lose the ability to interact with the blockchain
-               #     if they have no more funds.
+               #       fee quite low, otherwise, committee will pay funds that belong to the
+               #       business, to the reserver pool, that belongs to the business (read:
+               #       shareholders), but lose the ability to interact with the blockchain
+               #       if they have no more funds.
+               #     * Since this operation cannot be validated by anyone else then the
+               #       multi-authority committee-account, it can't be used for spamming.
                #
                "committee_member_update_global_parameters": {
-                   "fee": 0.01
+                   "fee": 0
                },
                #####################################################
                #
