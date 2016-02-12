@@ -28,6 +28,8 @@ if __name__ == '__main__':
     committee_account = dex.rpc.get_account("committee-trade")
     proposals = dex.ws.get_proposed_transactions(committee_account["id"])
 
+    r = dex.returnTicker()
+
     for proposal in proposals:
         print("Proposal: %s" % proposal["id"])
 
@@ -47,11 +49,16 @@ if __name__ == '__main__':
 
                 base  = dex.rpc.get_asset(order["amount_to_sell"]["asset_id"])
                 quote = dex.rpc.get_asset(order["min_to_receive"]["asset_id"])
+
                 amount_base = int(order["amount_to_sell"]["amount"]) / 10 ** base["precision"]
                 amount_quote = int(order["min_to_receive"]["amount"]) / 10 ** quote["precision"]
 
+                m = base["symbol"] + config.market_separator + quote["symbol"]
+                settlement_price = r[m]["settlement_price"]
+
                 price = amount_quote / amount_base
-                print("Selling %f %s for %f %s/%s" % (amount_base, base["symbol"], price, quote["symbol"], base["symbol"]))
+                premium = (price / settlement_price - 1) * 100
+                print("Selling %f %s for %f %s/%s (premium %5.2f%%)" % (amount_base, base["symbol"], price, quote["symbol"], base["symbol"], premium))
 
             else :
                 print(" - [Warning] Another operation is part of this proposal: %s" % (op[0]))

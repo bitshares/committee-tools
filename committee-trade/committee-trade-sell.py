@@ -1,29 +1,8 @@
 from grapheneexchange import GrapheneExchange
 from pprint import pprint
-
-
-class Config():
-    wallet_host           = "localhost"
-    wallet_port           = 8092
-    witness_url           = "wss://bitshares.openledger.info/ws"
-    watch_markets         = ["USD:BTS",
-                             "EUR:BTS",
-                             "GOLD:BTS",
-                             "SILVER:BTS",
-                             "CNY:BTS",
-                             "BTC:BTS",
-                             ]
-    market_separator      = ":"
-    account               = "committee-trade"
-    proposer              = "xeroc"
-
-    amount_premium = [ [1/3, 1.08],
-                       [1/3, 1.10],
-                       [1/3, 1.12],
-                      ]
+import config
 
 if __name__ == '__main__':
-    config = Config
     dex   = GrapheneExchange(config,
                              safe_mode=False,
                              propose_only=True)
@@ -34,15 +13,30 @@ if __name__ == '__main__':
         if quote == "BTS" :
             continue
 
-        # p = r[m]["settlement_price"]
-        p = r[m]["highestBid"]
-        print("Settlement  %s: %12.3f" % (quote, r[m]["settlement_price"]))
-        print("Highest Bid %s: %12.3f" % (quote, r[m]["highestBid"]))
+        settlement_price = r[m]["settlement_price"]
+        highestBid = r[m]["highestBid"]
+        print("Settlement  %7s: %12.3f" % (quote, r[m]["settlement_price"]))
+        print("Highest Bid %7s: %12.3f" % (quote, r[m]["highestBid"]))
 
-        for a in config.amount_premium:
-            amount = balances[quote] * a[0]
-            sell_price = p * a[1]
-            print("Selling %f %s for %f %s/%s" % (amount, quote, sell_price, base, quote))
-            dex.sell(m, sell_price, amount)
+        if quote in config.amount_premium:
+            for a in config.amount_premium[quote]:
+                sell_price = settlement_price * (1 + a["premium"] / 100)
+                amount = balances[quote] * a["volume_percentage"] / 100
 
-    dex.propose_all(proposer=config.proposer)
+                # do not sell below the highest bid!
+                if sell_price < highestBid :
+                    print("Highest bid is higher than sell price! Changing sell price")
+                    sell_price = highestBid
+
+                premium = (sell_price / settlement_price - 1) * 100
+
+                if premium > 15:
+                    print("Premium is %f%% and thus higher than 15%%.  Selling at 15%%!" % premium)
+                    sell_price = settlement_price * 1.15
+                    premium = (sell_price / settlement_price - 1) * 100
+
+                print("Selling %f %s for %f %s/%s (premium: %2.2f%%)" % (amount, quote, sell_price, base, quote, premium))
+                dex.sell(m, sell_price, amount, expiration=24 * 60 * 60)
+
+            dex.propose_all(proposer=config.proposer)
+            dex.proposals_clear()
