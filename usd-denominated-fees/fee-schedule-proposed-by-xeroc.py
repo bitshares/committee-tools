@@ -1564,7 +1564,7 @@ broadcast = False
 
     60 * 60 * 24 * 14 = 14 days
 """
-expires_from_now = 60 * 60 * 24 * 2
+expires_from_now = 60 * 60 * 24 * 7
 
 """ What tolerance (in percent) is ok when comparing/verifying an active
     proposal?
@@ -1573,4 +1573,4 @@ tolerance_percentage = 5  # %
 
 """ Force the final core_asset denominated fee to be integer
 """
-force_integer_core_fee = True
+force_integer_core_fee = False
