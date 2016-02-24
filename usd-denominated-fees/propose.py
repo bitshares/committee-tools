@@ -37,6 +37,9 @@ if __name__ == '__main__':
     # Show differences from previous to new fees
     print(json.dumps(DeepDiff(old_fees, new_fees), indent=4))
 
+    from pprint import pprint
+    pprint(tx)
+
     if not config.broadcast:
         print("=" * 80)
         print("Set broadcast to 'True' if the transaction shall be broadcast!")

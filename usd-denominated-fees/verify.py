@@ -38,12 +38,19 @@ if __name__ == '__main__':
                     fee_named[opName] = f[1].copy()
                     for o in f[1]:
                         if opName in config.native_fees :
-                            fee_named[opName][o] = int(f[1][o]) / 10 ** core_asset["precision"] * scale / core_exchange_rate
+                            if config.force_integer_core_fee :
+                                fee_named[opName][o] = int(int(f[1][o]) / 10 ** core_asset["precision"]) * scale / core_exchange_rate
+                            else:
+                                fee_named[opName][o] = int(f[1][o]) / 10 ** core_asset["precision"] * scale / core_exchange_rate
+
+                            core_fee_ist = int(f[1][o]) * scale / core_exchange_rate
+                            core_fee_soll = config.native_fees[opName][o] * 10 ** core_asset["precision"] / scale * core_exchange_rate
+
                             if config.native_fees[opName][o] != 0.0:
-                                offset = 1 - (fee_named[opName][o] / config.native_fees[opName][o])
-                                if math.fabs(offset) > config.tolerance_percentage / 100:
-                                    print(" - [Warning] %30s price for %30s differs by %+9.3f%% (%9.3f instead of %9.3f)" %
-                                          (o, opName, offset * 100, fee_named[opName][o], config.native_fees[opName][o]))
+                                scalingfactor = (config.native_fees[opName][o] / fee_named[opName][o]) if fee_named[opName][o] else 999
+                                if math.fabs(1 - scalingfactor) > config.tolerance_percentage / 100:
+                                    print("%23s price for %41s differs by %8.3fx (proposal: %9.4f USD (%9.4f BTS) / target: %9.4f USD (%9.1f BTS))" %
+                                          (o, opName, scalingfactor, fee_named[opName][o], core_fee_ist, config.native_fees[opName][o], core_fee_soll))
                         else :
                             print(" - [Warning] The parameter %s in operation %s is not defined in your set of native fees!" % (o, opName))
             else :
