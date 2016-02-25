@@ -1487,8 +1487,8 @@ native_fees = {#####################################################
                #     * per kbyte fee is used to prevent spamming with huge
                #       amounts of data
                "custom": {
-                   "fee": 0.10,
-                   "price_per_kbyte": 0.01
+                   "fee": 0.01,
+                   "price_per_kbyte": 0.05
                },
                #####################################################
                #
