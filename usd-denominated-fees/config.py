@@ -1,4 +1,12 @@
 #####################################################################################################################################################
+# To discuss for next schedule
+# ============================
+#
+#  * Reduction of asset_update fee if the CERs for UIA go out of sync
+#    too much ($2 per update might be too high)
+#
+#
+#####################################################################################################################################################
 # Shareholder Summary
 # ===================
 #
@@ -594,11 +602,15 @@ native_fees = {#####################################################
                #
                #     * most assets will probably never need to change at all
                #     * prediction market assets should change to be re-used after settlement
+               #     * Core Exchange rates for User-issued assets can
+               #       only be changed with this operation!
                #
                # Conclusion:
                #
                #     * Any fee between $0.50-$5 seems to be reasonable considering
                #       the above arguments.
+               #     * Depending on the actual business model, a high fee might result in
+               #       CERs to go 'out-of sync' or   at least get updated more rarely
                #
                "asset_update": {
                    "fee": 2,
