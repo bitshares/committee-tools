@@ -4,8 +4,9 @@
 #
 #  * Reduction of asset_update fee if the CERs for UIA go out of sync
 #    too much ($2 per update might be too high)
-#  * Discuss asset_reserve op fee (https://bitsharestalk.org/index.php/topic,21795.msg284011/topicseen.html#new)
+#  * Discuss asset_reserve & asset_issue ops fee (https://bitsharestalk.org/index.php/topic,21795.msg284011/topicseen.html#new)
 #  * Discuss asset_create fee
+#  * Discuss vesting_balance_withdraw fee (any fee above cashback_vesting_threshold will vest. Does it make sense if the fee for withdraw will vest too?)
 #
 #
 #####################################################################################################################################################
