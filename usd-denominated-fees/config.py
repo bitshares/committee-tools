@@ -584,14 +584,21 @@ native_fees = {#####################################################
                #     * issuing new shares should be considered a rare operation
                #     * the referral program shouldn't benefit more from it
                #       since the asset_creation has already paid into the program
+               #     * Gateways/Bridges that issue and burn their IOUs
+               #       just-in-time to be supply-consistent, will need
+               #       to call this operation on a per-trade/customer
+               #       basis!
                #
                # Conclusion:
                #
                #     * Any fee between $0.50-$5 seems to be reasonable considering
                #       the above arguments.
+               #     * In order to support existing business and not ruin their income by
+               #       a high and frequent fee, this should probably be in the range of a
+               #       simple transfer
                #
                "asset_issue": {
-                   "fee": 1,
+                   "fee": 0.018,
                    "price_per_kbyte": 0.007
                },
                #####################################################
@@ -658,14 +665,21 @@ native_fees = {#####################################################
                #       operation at all
                #     * This fee can be reconsidered once a business makes use
                #       of it
+               #     * Gateways/Bridges that issue and burn their IOUs
+               #       just-in-time to be supply-consistent, will need
+               #       to call this operation on a per-trade/customer
+               #       basis!
                #
                # Conclusion:
                #
                #     * Any fee between $0.10-$5 seems to be reasonable considering
                #       the above arguments.
+               #     * In order to support existing business and not
+               #       ruin their income by a high and frequent fee,
+               #       this should probably be below $10c
                #
                "asset_reserve": {
-                   "fee": 1
+                   "fee": 0,
                },
                #####################################################
                #
