@@ -35,9 +35,6 @@ if __name__ == '__main__':
 
         prop_op = proposal["proposed_transaction"]["operations"]
 
-        if len(prop_op) > 1 :
-            print(" - [Warning] This proposal has more than 1 operation")
-
         for op in prop_op :
 
             if op[0] == 1:
