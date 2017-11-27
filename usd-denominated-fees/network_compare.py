@@ -1,12 +1,12 @@
-from grapheneexchange import GrapheneExchange
-from graphenebase.transactions import getOperationNameForId
+from grapheneapi.grapheneapi import GrapheneAPI
+from bitsharesbase.operations import getOperationNameForId
+from bitshares.market import Market
 import math
 import config
 
 
 if __name__ == '__main__':
-    dex   = GrapheneExchange(config, safe_mode=False)
-    graphene = dex.rpc
+    graphene = GrapheneAPI(config.wallet_host, config.wallet_port)
 
     # Get current fees
     obj = graphene.get_object("2.0.0")[0]
@@ -15,8 +15,10 @@ if __name__ == '__main__':
     core_asset = graphene.get_asset("1.3.0")
 
     # Get ticker/current price
-    ticker = dex.returnTicker()[config.watch_markets[0]]
-    core_exchange_rate = ticker["core_exchange_rate"]
+    market = Market(config.watch_markets[0])
+    ticker = market.ticker()
+    core_exchange_rate = float(ticker["core_exchange_rate"])
+    settlement_price = float(ticker["quoteSettlement_price"])
 
     fee_named = {}
     for f in fees:

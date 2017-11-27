@@ -1,16 +1,18 @@
-from grapheneexchange import GrapheneExchange
-from graphenebase.transactions import getOperationNameForId
+from grapheneapi.grapheneapi import GrapheneAPI
+from bitsharesbase.operations import getOperationNameForId
+from bitshares.market import Market
+from bitshares import BitShares
 import math
 import config
 
 if __name__ == '__main__':
-    dex   = GrapheneExchange(config, safe_mode=False)
-    graphene = dex.rpc
+    graphene = GrapheneAPI(config.wallet_host, config.wallet_port)
+    bts = BitShares(config.witness_url)
 
     # Get current fees
     core_asset = graphene.get_asset("1.3.0")
-    committee_account = dex.rpc.get_account("committee-account")
-    proposals = dex.ws.get_proposed_transactions(committee_account["id"])
+    committee_account = graphene.get_account("committee-account")
+    proposals = bts.rpc.get_proposed_transactions(committee_account["id"])
 
     for proposal in proposals:
         print("Proposal: %s" % proposal["id"])
@@ -28,9 +30,10 @@ if __name__ == '__main__':
                 scale = int(op[1]["new_parameters"]["current_fees"]["scale"]) / 1e4
 
                 # Get ticker/current price
-                ticker = dex.returnTicker()[config.watch_markets[0]]
-                core_exchange_rate = ticker["core_exchange_rate"]
-                settlement_price = ticker["settlement_price"]
+                market = Market(config.watch_markets[0])
+                ticker = market.ticker()
+                core_exchange_rate = float(ticker["core_exchange_rate"])
+                settlement_price = float(ticker["quoteSettlement_price"])
 
                 fee_named = {}
                 for f in fees:

@@ -1,4 +1,7 @@
-from grapheneexchange import GrapheneExchange
+from grapheneapi.grapheneapi import GrapheneAPI
+from bitsharesbase.operations import getOperationNameForId
+from bitshares.market import Market
+from pprint import pprint
 import json
 from datetime import datetime
 import time
@@ -7,8 +10,7 @@ import config
 
 
 if __name__ == '__main__':
-    dex   = GrapheneExchange(config, safe_mode=False)
-    graphene = dex.rpc
+    graphene = GrapheneAPI(config.wallet_host, config.wallet_port)
     expiration = datetime.utcfromtimestamp(time.time() + int(config.expires_from_now)).strftime('%Y-%m-%dT%H:%M:%S')
 
     # Get current fees
@@ -18,9 +20,10 @@ if __name__ == '__main__':
     core_asset = graphene.get_asset("1.3.0")
 
     # Get ticker/current price
-    ticker = dex.returnTicker()[config.watch_markets[0]]
-    core_exchange_rate = ticker["core_exchange_rate"]
-    settlement_price = ticker["settlement_price"]
+    market = Market(config.watch_markets[0])
+    ticker = market.ticker()
+    core_exchange_rate = float(ticker["core_exchange_rate"])
+    settlement_price = float(ticker["quoteSettlement_price"])
 
     # Translate native fee in core_asset fee
     new_fees = config.native_fees.copy()
@@ -35,10 +38,7 @@ if __name__ == '__main__':
     new_fees = tx["operations"][0][1]["proposed_ops"][0]["op"][1]["new_parameters"]["current_fees"]
 
     # Show differences from previous to new fees
-    print(json.dumps(DeepDiff(old_fees, new_fees), indent=4))
-
-    from pprint import pprint
-    pprint(tx)
+    pprint(DeepDiff(old_fees, new_fees))
 
     if not config.broadcast:
         print("=" * 80)
