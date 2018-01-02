@@ -803,11 +803,11 @@ native_fees = {#####################################################
                #
                # Changes:
                #
-               #     * LTM fee shall be set to $120 instead of $150, to 
-               #          a) keep compensation of the reduced income for the referral program 
-               #             due to the lowered transfer and trading fees. 
+               #     * LTM fee shall be set to $120 instead of $150, to
+               #          a) keep compensation of the reduced income for the referral program
+               #             due to the lowered transfer and trading fees.
                #          b) Keep it above the originally offered $100.
-               #     * LTM fee may be raised with each new feature that comes 
+               #     * LTM fee may be raised with each new feature that comes
                #       (ie. Bond Market, MAS). Use of advanced features may require LTM.
                #     * Upgrade fee can be reduced occasionally to encourage upgrades for newly
                #       coming LTM-only features.
@@ -931,7 +931,7 @@ native_fees = {#####################################################
                #     * The fee could be anything
                #
                "vesting_balance_create": {
-                   "fee": 5
+                   "fee": 1
                },
                #####################################################
                #
@@ -1518,12 +1518,12 @@ wallet_port           = 8092
 
 """ Connection settings to a witness node (websocket)
 """
-witness_url           = "wss://bitshares.openledger.info/ws"
+witness_url           = "wss://node.bitshares.eu"
 
 """ This defines the market to take the price from. The second parameter should
     really be the core asset (BTS, MUSE, TEST, ...)
 """
-watch_markets         = ["USD:BTS"]
+market                = "USD:BTS"
 
 """ The proposer pays the fee for proposing the change to the committee
 """
@@ -1537,7 +1537,7 @@ broadcast = False
 
     60 * 60 * 24 * 14 = 14 days
 """
-expires_from_now = 60 * 60 * 24 * 7
+expires_from_now = 60 * 60 * 24 * 2
 
 """ What tolerance (in percent) is ok when comparing/verifying an active
     proposal?
