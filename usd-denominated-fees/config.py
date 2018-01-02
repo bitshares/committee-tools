@@ -813,7 +813,7 @@ native_fees = {#####################################################
                #       coming LTM-only features.
                #
                "account_upgrade": {
-                   "membership_annual_fee": 15,
+                   "membership_annual_fee": 99000000,
                    "membership_lifetime_fee": 120
                },
                #####################################################
