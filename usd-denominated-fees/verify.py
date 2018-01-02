@@ -19,10 +19,10 @@ if __name__ == '__main__':
 
         prop_op = proposal["proposed_transaction"]["operations"]
 
-        if len(prop_op) > 1 :
+        if len(prop_op) > 1:
             print(" - [Warning] This proposal has more than 1 operation")
 
-        for op in prop_op :
+        for op in prop_op:
 
             if op[0] == 31:
 
@@ -30,7 +30,7 @@ if __name__ == '__main__':
                 scale = int(op[1]["new_parameters"]["current_fees"]["scale"]) / 1e4
 
                 # Get ticker/current price
-                market = Market(config.watch_markets[0])
+                market = Market(config.market)
                 ticker = market.ticker()
                 core_exchange_rate = float(ticker["core_exchange_rate"])
                 settlement_price = float(ticker["quoteSettlement_price"])
@@ -40,9 +40,11 @@ if __name__ == '__main__':
                     opName = getOperationNameForId(f[0])
                     fee_named[opName] = f[1].copy()
                     for o in f[1]:
-                        if opName in config.native_fees :
-                            if config.force_integer_core_fee :
-                                fee_named[opName][o] = int(int(f[1][o]) / 10 ** core_asset["precision"]) * scale / core_exchange_rate
+                        if opName in config.native_fees:
+                            if config.force_integer_core_fee:
+                                fee_named[opName][o] = int(int(
+                                    f[1][o]) / 10 ** core_asset["precision"]
+                                ) * scale / core_exchange_rate
                             else:
                                 fee_named[opName][o] = int(f[1][o]) / 10 ** core_asset["precision"] * scale / core_exchange_rate
 
@@ -54,7 +56,7 @@ if __name__ == '__main__':
                                 if math.fabs(1 - scalingfactor) > config.tolerance_percentage / 100:
                                     print("%23s price for %41s differs by %8.3fx (proposal: %9.4f USD (%12.4f BTS) / target: %9.4f USD (%12.1f BTS))" %
                                           (o, opName, scalingfactor, fee_named[opName][o], core_fee_ist, config.native_fees[opName][o], core_fee_soll))
-                        else :
+                        else:
                             print(" - [Warning] The parameter %s in operation %s is not defined in your set of native fees!" % (o, opName))
-            else :
+            else:
                 print(" - [Warning] Another operation is part of this proposal: %s" % getOperationNameForId(op[0]))
