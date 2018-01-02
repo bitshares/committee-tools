@@ -1,7 +1,8 @@
-from grapheneapi.grapheneclient import GrapheneClient
+from grapheneapi.grapheneapi import GrapheneAPI
 from graphenebase.transactions import getOperationNameForId
 import json
 from deepdiff import DeepDiff
+
 
 proposer   = "xeroc"
 expiration = "2016-01-21T22:59:59"
@@ -9,12 +10,8 @@ price_per_kbyte = 40  # in BTS
 broadcast = False
 
 
-class Wallet():
-    wallet_host           = "localhost"
-    wallet_port           = 8092
-
 if __name__ == '__main__':
-    graphene = GrapheneClient(Wallet)
+    graphene = GrapheneAPI("localhost", 8092)
     obj = graphene.getObject("2.0.0")
     current_fees = obj["parameters"]["current_fees"]["parameters"]
     old_fees = obj["parameters"]["current_fees"]
@@ -22,7 +19,7 @@ if __name__ == '__main__':
 
     # General change of parameter
     changes = {}
-    for f in current_fees :
+    for f in current_fees:
         if ("price_per_kbyte" in f[1]) and (f[1]["price_per_kbyte"] is 20):
             print("Changing operation %s[%d]" % (getOperationNameForId(f[0]), f[0]))
             changes[getOperationNameForId(f[0])] = f[1].copy()

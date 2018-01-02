@@ -15,7 +15,7 @@ if __name__ == '__main__':
     core_asset = graphene.get_asset("1.3.0")
 
     # Get ticker/current price
-    market = Market(config.watch_markets[0])
+    market = Market(config.market)
     ticker = market.ticker()
     core_exchange_rate = float(ticker["core_exchange_rate"])
     settlement_price = float(ticker["quoteSettlement_price"])

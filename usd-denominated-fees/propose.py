@@ -1,8 +1,6 @@
 from grapheneapi.grapheneapi import GrapheneAPI
-from bitsharesbase.operations import getOperationNameForId
 from bitshares.market import Market
 from pprint import pprint
-import json
 from datetime import datetime
 import time
 from deepdiff import DeepDiff
@@ -11,7 +9,9 @@ import config
 
 if __name__ == '__main__':
     graphene = GrapheneAPI(config.wallet_host, config.wallet_port)
-    expiration = datetime.utcfromtimestamp(time.time() + int(config.expires_from_now)).strftime('%Y-%m-%dT%H:%M:%S')
+    expiration = datetime.utcfromtimestamp(
+        time.time() + int(config.expires_from_now)
+    ).strftime('%Y-%m-%dT%H:%M:%S')
 
     # Get current fees
     obj = graphene.get_object("2.0.0")[0]
@@ -20,7 +20,7 @@ if __name__ == '__main__':
     core_asset = graphene.get_asset("1.3.0")
 
     # Get ticker/current price
-    market = Market(config.watch_markets[0])
+    market = Market(config.market)
     ticker = market.ticker()
     core_exchange_rate = float(ticker["core_exchange_rate"])
     settlement_price = float(ticker["quoteSettlement_price"])
@@ -29,13 +29,22 @@ if __name__ == '__main__':
     new_fees = config.native_fees.copy()
     for opName in new_fees:
         for f in new_fees[opName]:
-            if config.force_integer_core_fee :
-                new_fees[opName][f] = int(int(config.native_fees[opName][f] / scale * core_exchange_rate) * 10 ** core_asset["precision"])
+            if config.force_integer_core_fee:
+                new_fees[opName][f] = int(int(
+                    config.native_fees[opName][f] /
+                    scale *
+                    core_exchange_rate
+                ) * 10 ** core_asset["precision"])
             else:
-                new_fees[opName][f] = int(config.native_fees[opName][f] * 10 ** core_asset["precision"] / scale * core_exchange_rate)
+                new_fees[opName][f] = int(
+                    config.native_fees[opName][f] *
+                    10 ** core_asset["precision"] /
+                    scale * core_exchange_rate)
 
-    tx = graphene.propose_fee_change(config.proposer, expiration, new_fees, config.broadcast)
-    new_fees = tx["operations"][0][1]["proposed_ops"][0]["op"][1]["new_parameters"]["current_fees"]
+    tx = graphene.propose_fee_change(
+        config.proposer, expiration, new_fees, config.broadcast)
+    new_fees = tx["operations"][0][1]["proposed_ops"][0][
+        "op"][1]["new_parameters"]["current_fees"]
 
     # Show differences from previous to new fees
     pprint(DeepDiff(old_fees, new_fees))
