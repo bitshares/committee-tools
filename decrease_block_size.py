@@ -1,7 +1,6 @@
 from grapheneapi.grapheneapi import GrapheneAPI
 from bitshares.utils import formatTimeFromNow
 import json
-from deepdiff import DeepDiff
 
 proposer   = "xeroc"
 expiration = formatTimeFromNow(10 * 60)
