@@ -516,14 +516,14 @@ native_fees = {#####################################################
                #          1 page of text description is about 1kb of data and
                #          should cost about $1c extra
                #
-               # Update 2018/11: Still gettign spam and scamcoins. 
+               # Update 2018/11: Still gettign spam and scamcoins.
                #                   3 letter 10k,
                #                   4 letter 3k
                #                   5 and more 100$
                #
                "asset_create": {
-                   "symbol4": 10000,
-                   "symbol3": 3000,
+                   "symbol3": 10000,
+                   "symbol4": 3000,
                    "long_symbol": 100,
                    "price_per_kbyte": 0.01
                },
@@ -583,7 +583,7 @@ native_fees = {#####################################################
                #     * Depending on the actual business model, a high fee might result in
                #       CERs to go 'out-of sync' or   at least get updated more rarely
                #
-               # Update 11/2018: Drop this to 1, especially for CERs 
+               # Update 11/2018: Drop this to 1, especially for CERs
                #
                "asset_update": {
                    "fee": 1,
@@ -1239,7 +1239,7 @@ native_fees = {#####################################################
                #       committee members to prepare good proposal to convince
                #       shareholders.
                #
-               # Update 11/2018: 
+               # Update 11/2018:
                #
                "committee_member_create": {
                    "fee": 50
