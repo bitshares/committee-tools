@@ -5,7 +5,7 @@ from bitshares import BitShares
 import math
 import config
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     graphene = GrapheneAPI(config.wallet_host, config.wallet_port)
     bts = BitShares(config.witness_url)
 
@@ -42,21 +42,60 @@ if __name__ == '__main__':
                     for o in f[1]:
                         if opName in config.native_fees:
                             if config.force_integer_core_fee:
-                                fee_named[opName][o] = int(int(
-                                    f[1][o]) / 10 ** core_asset["precision"]
-                                ) * scale / core_exchange_rate
+                                fee_named[opName][o] = (
+                                    int(int(f[1][o]) / 10 ** core_asset["precision"])
+                                    * scale
+                                    / core_exchange_rate
+                                )
                             else:
-                                fee_named[opName][o] = int(f[1][o]) / 10 ** core_asset["precision"] * scale / core_exchange_rate
+                                fee_named[opName][o] = (
+                                    int(f[1][o])
+                                    / 10 ** core_asset["precision"]
+                                    * scale
+                                    / core_exchange_rate
+                                )
 
-                            core_fee_ist = int(f[1][o]) / 10 ** core_asset["precision"] * scale
-                            core_fee_soll = config.native_fees[opName][o] * core_exchange_rate / scale
+                            core_fee_ist = (
+                                int(f[1][o]) / 10 ** core_asset["precision"] * scale
+                            )
+                            core_fee_soll = (
+                                config.native_fees[opName][o]
+                                * core_exchange_rate
+                                / scale
+                            )
 
                             if config.native_fees[opName][o] != 0.0:
-                                scalingfactor = (config.native_fees[opName][o] / fee_named[opName][o]) if fee_named[opName][o] else 999
-                                if math.fabs(1 - scalingfactor) > config.tolerance_percentage / 100:
-                                    print("%23s price for %41s differs by %8.3fx (proposal: %9.4f USD (%12.4f BTS) / target: %9.4f USD (%12.1f BTS))" %
-                                          (o, opName, scalingfactor, fee_named[opName][o], core_fee_ist, config.native_fees[opName][o], core_fee_soll))
+                                scalingfactor = (
+                                    (
+                                        config.native_fees[opName][o]
+                                        / fee_named[opName][o]
+                                    )
+                                    if fee_named[opName][o]
+                                    else 999
+                                )
+                                if (
+                                    math.fabs(1 - scalingfactor)
+                                    > config.tolerance_percentage / 100
+                                ):
+                                    print(
+                                        "%23s price for %41s differs by %8.3fx (proposal: %9.4f USD (%12.4f BTS) / target: %9.4f USD (%12.1f BTS))"
+                                        % (
+                                            o,
+                                            opName,
+                                            scalingfactor,
+                                            fee_named[opName][o],
+                                            core_fee_ist,
+                                            config.native_fees[opName][o],
+                                            core_fee_soll,
+                                        )
+                                    )
                         else:
-                            print(" - [Warning] The parameter %s in operation %s is not defined in your set of native fees!" % (o, opName))
+                            print(
+                                " - [Warning] The parameter %s in operation %s is not defined in your set of native fees!"
+                                % (o, opName)
+                            )
             else:
-                print(" - [Warning] Another operation is part of this proposal: %s" % getOperationNameForId(op[0]))
+                print(
+                    " - [Warning] Another operation is part of this proposal: %s"
+                    % getOperationNameForId(op[0])
+                )

@@ -5,7 +5,7 @@ import json
 import config
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     graphene = GrapheneAPI(config.wallet_host, config.wallet_port)
 
     # Get current fees
@@ -27,9 +27,10 @@ if __name__ == '__main__':
         # derive in USD
         for o in f[1]:
             fee_named[opName][o] = (
-                int(
-                    f[1][o]
-                ) / 10 ** core_asset["precision"] *
-                scale / core_exchange_rate)
+                int(f[1][o])
+                / 10 ** core_asset["precision"]
+                * scale
+                / core_exchange_rate
+            )
 
     print(json.dumps(fee_named, indent=4))
