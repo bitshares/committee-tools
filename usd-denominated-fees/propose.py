@@ -31,7 +31,7 @@ if __name__ == "__main__":
         for f in new_fees[opName]:
             if config.force_integer_core_fee:
                 new_fees[opName][f] = int(
-                    int(config.native_fees[opName][f] / scale * core_exchange_rate)
+                    int(config.native_fees[opName][f] / scale * settlement_price)
                     * 10 ** core_asset["precision"]
                 )
             else:
@@ -39,7 +39,7 @@ if __name__ == "__main__":
                     config.native_fees[opName][f]
                     * 10 ** core_asset["precision"]
                     / scale
-                    * core_exchange_rate
+                    * settlement_price
                 )
 
     tx = graphene.propose_fee_change(

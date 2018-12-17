@@ -31,14 +31,14 @@ if __name__ == "__main__":
                     fee_named[opName][o] = (
                         int(int(f[1][o]) / 10 ** core_asset["precision"])
                         * scale
-                        / core_exchange_rate
+                        / settlement_price
                     )
                 else:
                     fee_named[opName][o] = (
                         int(f[1][o])
                         / 10 ** core_asset["precision"]
                         * scale
-                        / core_exchange_rate
+                        / settlement_price
                     )
                 scalingfactor = (
                     (config.native_fees[opName][o] / fee_named[opName][o])

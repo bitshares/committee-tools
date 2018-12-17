@@ -30,7 +30,7 @@ if __name__ == "__main__":
                 int(f[1][o])
                 / 10 ** core_asset["precision"]
                 * scale
-                / core_exchange_rate
+                / settlement_price
             )
 
     print(json.dumps(fee_named, indent=4))

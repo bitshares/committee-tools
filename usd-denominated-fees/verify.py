@@ -14,6 +14,12 @@ if __name__ == "__main__":
     committee_account = graphene.get_account("committee-account")
     proposals = bts.rpc.get_proposed_transactions(committee_account["id"])
 
+    # Get ticker/current price
+    market = Market(config.market)
+    ticker = market.ticker()
+    core_exchange_rate = float(ticker["core_exchange_rate"])
+    settlement_price = float(ticker["quoteSettlement_price"])
+
     for proposal in proposals:
         print("Proposal: %s" % proposal["id"])
 
@@ -29,12 +35,6 @@ if __name__ == "__main__":
                 fees = op[1]["new_parameters"]["current_fees"]["parameters"]
                 scale = int(op[1]["new_parameters"]["current_fees"]["scale"]) / 1e4
 
-                # Get ticker/current price
-                market = Market(config.market)
-                ticker = market.ticker()
-                core_exchange_rate = float(ticker["core_exchange_rate"])
-                settlement_price = float(ticker["quoteSettlement_price"])
-
                 fee_named = {}
                 for f in fees:
                     opName = getOperationNameForId(f[0])
@@ -45,14 +45,14 @@ if __name__ == "__main__":
                                 fee_named[opName][o] = (
                                     int(int(f[1][o]) / 10 ** core_asset["precision"])
                                     * scale
-                                    / core_exchange_rate
+                                    / settlement_price
                                 )
                             else:
                                 fee_named[opName][o] = (
                                     int(f[1][o])
                                     / 10 ** core_asset["precision"]
                                     * scale
-                                    / core_exchange_rate
+                                    / settlement_price
                                 )
 
                             core_fee_ist = (
@@ -60,7 +60,7 @@ if __name__ == "__main__":
                             )
                             core_fee_soll = (
                                 config.native_fees[opName][o]
-                                * core_exchange_rate
+                                * settlement_price
                                 / scale
                             )
 
