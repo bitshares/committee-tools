@@ -1,14 +1,6 @@
 #####################################################################################################################################################
-# To discuss for next schedule
-# ============================
 #
-#  * Reduction of asset_update fee if the CERs for UIA go out of sync
-#    too much ($2 per update might be too high)
-#  * Discuss asset_create fee
-#  * Discuss vesting_balance_create, too expensive for mass creation in dividends use case
-#  * Discuss vesting_balance_withdraw fee (any fee above cashback_vesting_threshold will vest. Does it make sense if the fee for withdraw will vest too?)
-#  * Percentage based vesting_withdraw?
-#
+# UPDATE DECEMBER 2018: See Previous discussion here: https://github.com/bitshares/committee-tools/pull/1
 #
 #####################################################################################################################################################
 # Shareholder Summary
@@ -343,9 +335,11 @@ native_fees = {#####################################################
                #              32 chars = 32 bytes (should be sufficient to cover most use cases)
                #              32 bytes / 1024 bytes per kbyte * 0.01 = 0.0031 USD = $0.31c (extra for the memo)
                #
+               # Update 11/2018: Current BTC next block fee is 0.44
+               #
                "transfer": {
-                   "fee": 0.018,
-                   "price_per_kbyte": 0.01
+                   "fee": 0.08,
+                   "price_per_kbyte": 0.03
                },
                #####################################################
 
@@ -414,8 +408,10 @@ native_fees = {#####################################################
                #     * I thus propose a $0.001c flat fee and rising the percentage
                #       trading fee to 0.10% per filled trade.
                #
+               # Update 12/2018: 0.2 of a cent for LTMs
+               #
                "limit_order_create": {
-                   "fee": 0.001
+                   "fee": 0.01
                },
                #####################################################
                #
@@ -436,8 +432,10 @@ native_fees = {#####################################################
                #     only if) the order has not been partially (or
                #     fully) filled.
                #
+               # Update 11/2018: 1/10th create fee like before
+               #
                "limit_order_cancel": {
-                   "fee": 0.0001
+                   "fee": 0.001
                },
                #####################################################
                #
@@ -451,8 +449,10 @@ native_fees = {#####################################################
                #     Since this operation is crucial for liquidity in
                #     bitassets, we should set it to the bare minimum.
                #
+               # Update 11/2018: More "valuable" op than limit order
+               #
                "call_order_update": {
-                   "fee": 0.001
+                   "fee": 0.01
                },
                #####################################################
                #
@@ -508,11 +508,16 @@ native_fees = {#####################################################
                #          1 page of text description is about 1kb of data and
                #          should cost about $1c extra
                #
+               # Update 2018/11: Still gettign spam and scamcoins.
+               #                   3 letter 10k,
+               #                   4 letter 3k
+               #                   5 and more 100$
+               #
                "asset_create": {
-                   "long_symbol": 50,
-                   "symbol4": 2000,
-                   "symbol3": 8000,
-                   "price_per_kbyte": 0.01
+                   "symbol3": 10000,
+                   "symbol4": 3000,
+                   "long_symbol": 100,
+                   "price_per_kbyte": 0.03
                },
                #####################################################
                #
@@ -541,9 +546,13 @@ native_fees = {#####################################################
                #       a high and frequent fee, this should probably be in the range of a
                #       simple transfer
                #
+               # Update 11/2018: Asset issue directly corresponds to a gateway
+               #                 receivign gateway fees. These are high. We can
+               #                 up this
+               #
                "asset_issue": {
-                   "fee": 0.018,
-                   "price_per_kbyte": 0.01
+                   "fee": 0.05,
+                   "price_per_kbyte": 0.03
                },
                #####################################################
                #
@@ -566,9 +575,11 @@ native_fees = {#####################################################
                #     * Depending on the actual business model, a high fee might result in
                #       CERs to go 'out-of sync' or   at least get updated more rarely
                #
+               # Update 11/2018: Drop this to 1, especially for CERs
+               #
                "asset_update": {
-                   "fee": 2,
-                   "price_per_kbyte": 0.007,
+                   "fee": 1,
+                   "price_per_kbyte": 0.03,
                },
                #####################################################
                #
@@ -592,8 +603,10 @@ native_fees = {#####################################################
                #     * Any fee between $0.10-$2 seems to be reasonable considering
                #       the above arguments.
                #
+               # Update 11/2018: On par with increases
+               #
                "asset_fund_fee_pool": {
-                   "fee": 0.50
+                   "fee": 0.1
                },
                #####################################################
                #
@@ -622,8 +635,10 @@ native_fees = {#####################################################
                #       ruin their income by a high and frequent fee,
                #       this should probably be below $10c
                #
+               # Update 11/2018: On par with increases
+               #
                "asset_reserve": {
-                   "fee": 0.001,
+                   "fee": 0.01,
                },
                #####################################################
                #
@@ -654,8 +669,10 @@ native_fees = {#####################################################
                #     * Stettlement is still a core functionality and a
                #       value proposition of BitShares
                #
+               # Update: 11/2018: Increasing this less than others
+               #
                "asset_settle": {
-                   "fee": 0.05
+                   "fee": 0.1
                },
                #####################################################
                #
@@ -677,8 +694,11 @@ native_fees = {#####################################################
                #     * Any fee between $1-$10 seems to be reasonable considering
                #       the above arguments.
                #
+               # Update 11/2018: Rare cnsiderign lack of prediction markets. Up
+               #                 to discourage "random"/abusive usage
+               #
                "asset_global_settle": {
-                   "fee": 5
+                   "fee": 10
                },
                #####################################################
                #
@@ -698,6 +718,8 @@ native_fees = {#####################################################
                #
                #     * Any fee between $1-$10 seems to be reasonable considering
                #       the above arguments.
+               #
+               # Update 11/2018: On pare
                #
                "asset_claim_fees": {
                    "fee": 1,
@@ -721,6 +743,8 @@ native_fees = {#####################################################
                #
                #     * Any fee between $1-$10 seems to be reasonable considering
                #       the above arguments.
+               #
+               # Update 11/2018: Keep same
                #
                "asset_update_feed_producers": {
                    "fee": 5
@@ -748,8 +772,11 @@ native_fees = {#####################################################
                #
                #     Anything above the bare minimum is considered harmful!
                #
+               # Update: 11/2018: Halving this, would like witnesses to provide
+               #                  more feeds/more often
+               #
                "asset_publish_feed": {
-                   "fee": 0.0001
+                   "fee": 0.00001
                },
                #####################################################
                #
@@ -768,8 +795,10 @@ native_fees = {#####################################################
                #     * Any fee between $1-$10 seems to be reasonable considering
                #       the above arguments.
                #
+               # Update 11/2018: Rare and cant allow these to change often…up to 10
+               #
                "asset_update_bitasset": {
-                   "fee": 5
+                   "fee": 10
                },
                #####################################################
 
@@ -812,6 +841,9 @@ native_fees = {#####################################################
                #     * Upgrade fee can be reduced occasionally to encourage upgrades for newly
                #       coming LTM-only features.
                #
+               # Update 11/2018: Keeping this at same price with other fees
+               #                 increased should prompt more users to upgrade
+               #
                "account_upgrade": {
                    "membership_annual_fee": 99000000,
                    "membership_lifetime_fee": 120
@@ -840,7 +872,7 @@ native_fees = {#####################################################
                #       the above arguments.
                #
                "account_whitelist": {
-                   "fee": 0.10
+                   "fee": 0.04
                },
                #####################################################
                #
@@ -857,8 +889,10 @@ native_fees = {#####################################################
                #
                #     * Anything can be used here
                #
+               # Update 11/2018: On pare with other increases. Hardly used anyway
+               #
                "account_transfer": {
-                   "fee": 5
+                   "fee": 10
                },
                #####################################################
                #
@@ -877,9 +911,11 @@ native_fees = {#####################################################
                #     * This operation should be as cheap as possible
                #     * The price per kbyte fee should mostly prevent spam
                #
+               # Update 11/2018: Since voting is an update operation, I'd ratehr keep this low
+               #
                "account_update": {
-                   "fee": 0.001,
-                   "price_per_kbyte": 0.007
+                   "fee": 0.003,
+                   "price_per_kbyte": 0.03
                },
                #####################################################
                #
@@ -904,10 +940,13 @@ native_fees = {#####################################################
                #       and make a profit for the rare namespace
                #     * The price per kbyte fee should mostly prevent spam
                #
+               # Update 11/2018: We're getting too many account that are  never
+               #                 used. Premium however can be lowered to 3 USD
+               #
                "account_create": {
-                   "basic_fee": 0.10,
-                   "premium_fee": 5,
-                   "price_per_kbyte": 0.007
+                   "basic_fee": 0.25,
+                   "premium_fee": 3,
+                   "price_per_kbyte": 0.03
                },
                #####################################################
 
@@ -930,8 +969,10 @@ native_fees = {#####################################################
                #
                #     * The fee could be anything
                #
+               # Update 11/2018: Extended/Valuable functionality
+               #
                "vesting_balance_create": {
-                   "fee": 1
+                   "fee": 2
                },
                #####################################################
                #
@@ -953,8 +994,10 @@ native_fees = {#####################################################
                #     * Any fee between $0.10-$5 seems to be reasonable considering
                #       the above arguments.
                #
+               # Update 11/2018: Should be less expensive
+               #
                "vesting_balance_withdraw": {
-                   "fee": 2
+                   "fee": 1
                },
                #####################################################
 
@@ -986,8 +1029,11 @@ native_fees = {#####################################################
                #     * Any fee between $2-$50 seems to be reasonable considering
                #       the above arguments.
                #
+               # Update 11/20018: Workers should be WELL thought out and
+               #                  documented and for "larger funding" Seems
+               #                  like it wasnt high enough
                "worker_create": {
-                   "fee": 50,
+                   "fee": 75,
                },
                #####################################################
 
@@ -1025,8 +1071,11 @@ native_fees = {#####################################################
                #       witnesses to prepare good proposal to convince
                #       shareholders.
                #
+               # Update 11/2018: Anyone commiting to runnign a witness (server
+               #                 costs etc) should be able to afford this…
+               #
                "witness_create": {
-                   "fee": 50
+                   "fee": 100
                },
                #####################################################
                #
@@ -1050,6 +1099,9 @@ native_fees = {#####################################################
                # Conclusion:
                #
                #     Anything above the bare minimum is considered harmful!
+               #
+               # Update 11/2018: Low to keep witness details updated and make
+               #                 sure they switch keys often
                #
                "witness_update": {
                    "fee": 0.01
@@ -1093,9 +1145,10 @@ native_fees = {#####################################################
                #     * thus we could have a cheap flat fee and a rather high
                #       kbyte fee
                #
+               # Update 11/2018: Slight increase
                "proposal_create": {
-                   "fee": 0.15,
-                   "price_per_kbyte": 0.05
+                   "fee": 0.2,
+                   "price_per_kbyte": 0.15
                },
                #####################################################
                #
@@ -1140,9 +1193,11 @@ native_fees = {#####################################################
                #     * no real data be added except for valid public keys,
                #       hence the per kbyte fee is rather low
                #
+               # Update 11/2018: 1/10th of create
+               #
                "proposal_update": {
-                   "fee": 0.005,
-                   "price_per_kbyte": 0.007
+                   "fee": 0.02,
+                   "price_per_kbyte": 0.03
                },
                #####################################################
 
@@ -1176,8 +1231,10 @@ native_fees = {#####################################################
                #       committee members to prepare good proposal to convince
                #       shareholders.
                #
+               # Update 11/2018:
+               #
                "committee_member_create": {
-                   "fee": 5
+                   "fee": 50
                },
                #####################################################
                #
@@ -1235,6 +1292,10 @@ native_fees = {#####################################################
                #     * To prevent misuse, this operation should cost at least
                #       the fee of creating a new committee account, probably
                #       more.
+               #
+               # Update 11/2018: Would like to see committee members keep
+               #                 details up to date
+               #
                "committee_member_update": {
                    "fee": 10
                },
@@ -1280,8 +1341,10 @@ native_fees = {#####################################################
                #       been approved by shareholders including the rule for a 3
                #       times the transfer fee requirement.
                #
+               # Update 11/2018:
+               #
                "transfer_from_blind": {
-                   "fee": 0.21,
+                   "fee": 0.4,
                },
                #####################################################
                #
@@ -1304,8 +1367,10 @@ native_fees = {#####################################################
                #       been approved by shareholders including the rule for a 3
                #       times the transfer fee requirement.
                #
+               # Update 11/2018:
+               #
                "transfer_to_blind": {
-                   "fee": 0.21,
+                   "fee": 0.4,
                    "price_per_output": 0.07
                },
                #####################################################
@@ -1348,8 +1413,10 @@ native_fees = {#####################################################
                #       little fee here. Anything from $0.10 to $5 might be
                #       considered fair.
                #
+               # Update 11/2018: Extedned functionality. Rarely used but more
+               #                 valuable
                "withdraw_permission_create": {
-                   "fee": 0.15
+                   "fee": 0.5
                },
                #####################################################
                #
@@ -1373,8 +1440,10 @@ native_fees = {#####################################################
                #       encourage people to use it, we cannot ask for
                #       $1c.
                #
+               # Update 11/2018:
+               #
                "withdraw_permission_update": {
-                   "fee": 0.01
+                   "fee": 0.05
                },
                #####################################################
                #
@@ -1413,9 +1482,11 @@ native_fees = {#####################################################
                #         * not discouraging high monthly payments such
                #           as rent, electricity bills, etc.
                #
+               # Update 11/2018:
+               #
                "withdraw_permission_claim": {
-                   "fee": 0.8 * 0.0180,
-                   "price_per_kbyte": 0.007
+                   "fee": 0.1,
+                   "price_per_kbyte": 0.03
                },
                #####################################################
                #
@@ -1459,8 +1530,11 @@ native_fees = {#####################################################
                #     * flat fee is to prevent spamming with small custom operations
                #     * per kbyte fee is used to prevent spamming with huge
                #       amounts of data
+               #
+               # Update 11/2018: Lower this to increase custom use cases
+               #
                "custom": {
-                   "fee": 0.01,
+                   "fee": 0.005,
                    "price_per_kbyte": 0.05
                },
                #####################################################
@@ -1477,8 +1551,11 @@ native_fees = {#####################################################
                #     Until we figured out what we can do with this operation,
                #     it should probably be rather expensive.
                #
+               # Update 11/2018: Make this cheaper as it's useful but rarely
+               #                 used
+               #
                "assert": {
-                   "fee": 0.50
+                   "fee": 0.1
                },
                #####################################################
                #
@@ -1504,12 +1581,84 @@ native_fees = {#####################################################
                #     * Flat fees of $0.50 to $5 seem reasonable
                #     * kbyte price is required to prevent data spamming.
                #
+               # Update 11/2018: Should be used sparingly
+               #
                "override_transfer": {
-                   "fee": 1,
-                   "price_per_kbyte": 0.007
+                   "fee": 2,
+                   "price_per_kbyte": 0.03
                },
                #####################################################
-               }
+               # Virtual
+               "fba_distribute": {
+               },
+               #####################################################
+               #
+               # Description:
+               #
+               #     This operation is used to revive a global settlement of a
+               #     bitasset. As such, it should occure rarely but is
+               #     considered important to operations of smartcoins.
+               #
+               # Rational:
+               #
+               #     * The main purposes of this operation is revival of bitassets
+               #     * this is considered a rather rare event
+               #     * community should be incentivized to revive a bitasset
+               #     * by bidding, a bigger call position can be obtained.
+               #
+               # Conclusion:
+               #
+               #     * Flat fees of $0.50 to $5 seem reasonable
+               #
+               # Update 11/2018:
+               #
+               "bid_collateral": {
+                   "fee": 2.5
+               },
+               # Virtual
+               "execute_bid": {
+               },
+               #####################################################
+               #
+               # Description:
+               #
+               #     We allow to reclaim BTS in the fee pool
+               #
+               # Rational:
+               #
+               #     * This should be a very rare operation
+               #
+               # Conclusion:
+               #
+               #     * Flat fees of $5+ seem reasonable
+               #
+               # Update 11/2018:
+               #
+               "asset_claim_pool": {
+                   "fee": 5
+               },
+               #####################################################
+               #
+               # Description:
+               #
+               #     For sake of securing an asset's issuer, changinng the
+               #     issuer requires the owner to use this operation. It's sole
+               #     purpose is to change the issuer account.
+               #
+               # Rational:
+               #
+               #    * Really rare event.
+               #
+               # Conclusion:
+               #
+               #     * Flat fees of $10+ seem reasonable
+               #
+               # Update 11/2018:
+               #
+               "asset_update_issuer": {
+                   "fee": 10
+               },
+}
 
 """ Connection settings to the wallet
 """
