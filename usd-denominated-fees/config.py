@@ -452,7 +452,7 @@ native_fees = {#####################################################
                # Update 11/2018: More "valuable" op than limit order
                #
                "call_order_update": {
-                   "fee": 0.01
+                   "fee": 0.05
                },
                #####################################################
                #
@@ -914,7 +914,7 @@ native_fees = {#####################################################
                # Update 11/2018: Since voting is an update operation, I'd ratehr keep this low
                #
                "account_update": {
-                   "fee": 0.003,
+                   "fee": 0.01,
                    "price_per_kbyte": 0.03
                },
                #####################################################
