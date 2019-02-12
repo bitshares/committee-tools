@@ -1509,7 +1509,75 @@ native_fees = {#####################################################
                    "price_per_kbyte": 0.007
                },
                #####################################################
+               # Virtual
+               "fba_distribute": {},
+               #####################################################
+               #
+               # Description:
+               #
+               #     This operation is used to revive a global settlement of a
+               #     bitasset. As such, it should occure rarely but is
+               #     considered important to operations of smartcoins.
+               #
+               # Rational:
+               #
+               #     * The main purposes of this operation is revival of bitassets
+               #     * this is considered a rather rare event
+               #     * community should be incentivized to revive a bitasset
+               #     * by bidding, a bigger call position can be obtained.
+               #
+               # Conclusion:
+               #
+               #     * Flat fees of $0.50 to $5 seem reasonable
+               #
+               # Update 11/2018:
+               #
+               "bid_collateral": {
+                   "fee": 2.5
+               },
+               # Virtual
+               "execute_bid": {},
+               #####################################################
+               #
+               # Description:
+               #
+               #     We allow to reclaim BTS in the fee pool
+               #
+               # Rational:
+               #
+               #     * This should be a very rare operation
+               #
+               # Conclusion:
+               #
+               #     * Flat fees of $5+ seem reasonable
+               #
+               # Update 11/2018:
+               #
+               "asset_claim_pool": {
+                   "fee": 5
+               },
+               #####################################################
+               #
+               # Description:
+               #
+               #     For sake of securing an asset's issuer, changinng the
+               #     issuer requires the owner to use this operation. It's sole
+               #     purpose is to change the issuer account.
+               #
+               # Rational:
+               #
+               #    * Really rare event.
+               #
+               # Conclusion:
+               #
+               #     * Flat fees of $10+ seem reasonable
+               #
+               # Update 11/2018:
+               #
+               "asset_update_issuer": {
+                   "fee": 10
                }
+}
 
 """ Connection settings to the wallet
 """
