@@ -2,12 +2,12 @@ from grapheneapi.grapheneapi import GrapheneAPI
 from bitshares.utils import formatTimeFromNow
 import json
 
-proposer   = "xeroc"
+proposer = "xeroc"
 expiration = formatTimeFromNow(10 * 60)
-broadcast  = True
+broadcast = True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     graphene = GrapheneAPI("localhost", 8092)
     obj = graphene.get_object("2.0.0")
 

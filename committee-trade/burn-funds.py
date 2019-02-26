@@ -6,13 +6,15 @@ import time
 
 
 def formatTimeFromNow(secs=0):
-    return datetime.utcfromtimestamp(time.time() + int(secs)).strftime('%Y-%m-%dT%H:%M:%S')
+    return datetime.utcfromtimestamp(time.time() + int(secs)).strftime(
+        "%Y-%m-%dT%H:%M:%S"
+    )
 
 
-if __name__ == '__main__':
-    client   = GrapheneClient(config)
+if __name__ == "__main__":
+    client = GrapheneClient(config)
     core_asset = client.getObject("1.3.0")
-    account  = client.rpc.get_account(config.account)
+    account = client.rpc.get_account(config.account)
     proposer = client.rpc.get_account(config.proposer)
 
     ops = []
@@ -31,11 +33,9 @@ if __name__ == '__main__':
     for op in ops:
         client.rpc.add_operation_to_builder_transaction(buildHandle, op)
     client.rpc.set_fees_on_builder_transaction(buildHandle, "1.3.0")
-    client.rpc.propose_builder_transaction2(buildHandle, 
-                                            proposer["name"],
-                                            formatTimeFromNow(60 * 60 * 24),
-                                            0,
-                                            False)
+    client.rpc.propose_builder_transaction2(
+        buildHandle, proposer["name"], formatTimeFromNow(60 * 60 * 24), 0, False
+    )
     client.rpc.set_fees_on_builder_transaction(buildHandle, "1.3.0")
     tx = client.rpc.sign_builder_transaction(buildHandle, False)
     pprint(tx)

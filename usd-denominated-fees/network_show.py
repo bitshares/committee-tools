@@ -27,10 +27,7 @@ if __name__ == "__main__":
         # derive in USD
         for o in f[1]:
             fee_named[opName][o] = (
-                int(f[1][o])
-                / 10 ** core_asset["precision"]
-                * scale
-                / settlement_price
+                int(f[1][o]) / 10 ** core_asset["precision"] * scale / settlement_price
             )
 
     print(json.dumps(fee_named, indent=4))

@@ -4,13 +4,13 @@ import json
 from deepdiff import DeepDiff
 
 
-proposer   = "xeroc"
+proposer = "xeroc"
 expiration = "2016-01-21T22:59:59"
 price_per_kbyte = 40  # in BTS
 broadcast = False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     graphene = GrapheneAPI("localhost", 8092)
     obj = graphene.getObject("2.0.0")
     current_fees = obj["parameters"]["current_fees"]["parameters"]
@@ -23,7 +23,9 @@ if __name__ == '__main__':
         if ("price_per_kbyte" in f[1]) and (f[1]["price_per_kbyte"] is 20):
             print("Changing operation %s[%d]" % (getOperationNameForId(f[0]), f[0]))
             changes[getOperationNameForId(f[0])] = f[1].copy()
-            changes[getOperationNameForId(f[0])]["price_per_kbyte"] = int(price_per_kbyte / scale * 1e5)
+            changes[getOperationNameForId(f[0])]["price_per_kbyte"] = int(
+                price_per_kbyte / scale * 1e5
+            )
 
     # overwrite / set specific fees
     # changes["transfer"]["price_per_kbyte"]       = int(  20 / scale * 1e5)
@@ -31,7 +33,9 @@ if __name__ == '__main__':
 
     print("=" * 80)
     tx = graphene.rpc.propose_fee_change(proposer, expiration, changes, broadcast)
-    new_fees = tx["operations"][0][1]["proposed_ops"][0]["op"][1]["new_parameters"]["current_fees"]
+    new_fees = tx["operations"][0][1]["proposed_ops"][0]["op"][1]["new_parameters"][
+        "current_fees"
+    ]
 
     print(json.dumps(DeepDiff(old_fees, new_fees), indent=4))
 

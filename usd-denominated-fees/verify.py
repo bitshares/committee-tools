@@ -59,9 +59,7 @@ if __name__ == "__main__":
                                 int(f[1][o]) / 10 ** core_asset["precision"] * scale
                             )
                             core_fee_soll = (
-                                config.native_fees[opName][o]
-                                * settlement_price
-                                / scale
+                                config.native_fees[opName][o] * settlement_price / scale
                             )
 
                             if config.native_fees[opName][o] != 0.0:
