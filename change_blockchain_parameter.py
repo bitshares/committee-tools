@@ -13,7 +13,9 @@ from bitshares.utils import formatTimeFromNow
 def main(rpchost, rpcport, expiration, broadcast, proposer):
     rpc = GrapheneAPI(rpchost, rpcport)
 
-    updated_parameters = dict(maximum_transaction_size=1024000)
+    """ Update parameters here
+    """
+    updated_parameters = dict(maximum_transaction_size=1048576}
 
     tx = rpc.propose_parameter_change(
         proposer, formatTimeFromNow(expiration), updated_parameters, broadcast
