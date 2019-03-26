@@ -1425,15 +1425,17 @@ native_fees = {  #####################################################
     #     * The main purposes of this operation is revival of bitassets
     #     * this is considered a rather rare event
     #     * community should be incentivized to revive a bitasset
+    #     * bidders may update their own bids frequently to compete with
+    #       each other when a bitasset is about to revive
     #     * by bidding, a bigger call position can be obtained.
     #
     # Conclusion:
     #
-    #     * Flat fees of $0.50 to $5 seem reasonable
+    #     * Use the same value as call_order_update
     #
-    # Update 11/2018:
+    # Update 03/2019:
     #
-    "bid_collateral": {"fee": 2.5},
+    "bid_collateral": {"fee": 0.001},
     # Virtual
     "execute_bid": {},
     #####################################################
