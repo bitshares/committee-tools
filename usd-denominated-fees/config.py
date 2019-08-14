@@ -903,7 +903,7 @@ native_fees = {  #####################################################
     #     * Any fee between $0.10-$5 seems to be reasonable considering
     #       the above arguments.
     #
-    "vesting_balance_withdraw": {"fee": 2},
+    "vesting_balance_withdraw": {"fee": 0.1},
     #####################################################
     #####################################################
     # WORKER OPERATIONS
