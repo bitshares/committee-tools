@@ -5,8 +5,6 @@
 #  * Reduction of asset_update fee if the CERs for UIA go out of sync
 #    too much ($2 per update might be too high)
 #  * Discuss asset_create fee
-#  * Discuss vesting_balance_create, too expensive for mass creation in dividends use case
-#  * Discuss vesting_balance_withdraw fee (any fee above cashback_vesting_threshold will vest. Does it make sense if the fee for withdraw will vest too?)
 #  * Percentage based vesting_withdraw?
 #
 #
@@ -884,7 +882,7 @@ native_fees = {  #####################################################
     #
     #     * The fee could be anything
     #
-    "vesting_balance_create": {"fee": 1},
+    "vesting_balance_create": {"fee": 0.1},
     #####################################################
     #
     # Description:
@@ -905,7 +903,7 @@ native_fees = {  #####################################################
     #     * Any fee between $0.10-$5 seems to be reasonable considering
     #       the above arguments.
     #
-    "vesting_balance_withdraw": {"fee": 2},
+    "vesting_balance_withdraw": {"fee": 0.1},
     #####################################################
     #####################################################
     # WORKER OPERATIONS
