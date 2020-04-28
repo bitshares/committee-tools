@@ -441,7 +441,7 @@ native_fees = {  #####################################################
     #     Since this operation is crucial for liquidity in
     #     bitassets, we should set it to the bare minimum.
     #
-    "call_order_update": {"fee": 0.001},
+    "call_order_update": {"fee": 0.01},
     #####################################################
     #
     # Description:
@@ -631,7 +631,7 @@ native_fees = {  #####################################################
     #     * Stettlement is still a core functionality and a
     #       value proposition of BitShares
     #
-    "asset_settle": {"fee": 0.05},
+    "asset_settle": {"fee": 0.2},
     #####################################################
     #
     # Description:
@@ -1431,9 +1431,7 @@ native_fees = {  #####################################################
     #
     #     * Use the same value as call_order_update
     #
-    # Update 03/2019:
-    #
-    "bid_collateral": {"fee": 0.001},
+    "bid_collateral": {"fee": 0.01},
     # Virtual
     "execute_bid": {},
     #####################################################
