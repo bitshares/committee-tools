@@ -477,6 +477,16 @@ native_fees = {  #####################################################
     #     * We need to prevent squatting of premium symbols
     #     * Prediction markets presumable use long_symbol
     #       assets frequently.
+    #     * Creating an asset is like listing a coin on a centralized
+    #       exchange, asset creation fee should not be too cheap
+    #       in comparison to the listing fees on the centralized
+    #       exchanges.
+    #     * A half of the total asset creation fee is put into the
+    #       fee pool of the newly created asset, and can be redeemed
+    #       soon after the creation. So the real cost is actually a
+    #       half of the list price.
+    #     * Scammers may create fake assets to scam victims, so the
+    #       fee should not be too cheap.
     #
     # Conclusion
     #
@@ -488,7 +498,7 @@ native_fees = {  #####################################################
     #       individuals that have certain plans to register an asset.
     #     * Prediction market businesses that create new
     #       assets frequenctly should upgrade to LTM to
-    #       reduce the fee by 80%.
+    #       reduce the cost.
     #     * Since the fixed fees are preventing spam and abuse of
     #       the blockchain as storage, the price per kbyte can be left
     #       rather low to allow lengthy descriptions:
@@ -496,9 +506,9 @@ native_fees = {  #####################################################
     #          should cost about $1c extra
     #
     "asset_create": {
-        "long_symbol": 50,
-        "symbol4": 2000,
-        "symbol3": 8000,
+        "long_symbol": 500,
+        "symbol4": 5000,
+        "symbol3": 25000,
         "price_per_kbyte": 0.01,
     },
     #####################################################
