@@ -545,7 +545,7 @@ native_fees = {  #####################################################
     #
     # Rational:
     #
-    #     * asset owners have already paid a relately large amount to create
+    #     * asset owners have already paid a relatively large amount to create
     #       the assets
     #     * asset owners rely on this operation to keep core exchange rate
     #       and other parameters up-to-date, so the operation is expected
