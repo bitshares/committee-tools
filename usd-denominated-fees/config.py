@@ -3,7 +3,7 @@
 # ============================
 #
 #  * Percentage based vesting_withdraw?
-#
+#  * consider increasing asset_publish_feed fee
 #
 #####################################################################################################################################################
 # Shareholder Summary
@@ -366,6 +366,8 @@ native_fees = {  #####################################################
     #            refunded
     #          * depending on the asset, there is no percentage
     #            market fee, but a flat fee
+    #     * if an order is matched as the maker, a part of the creation fee
+    #       will be refunded.
     #
     # Other exchanges:
     #
@@ -392,20 +394,18 @@ native_fees = {  #####################################################
     #     * Having a trading fee that is higher than transfer makes
     #       no sense and people would stick with trading on external
     #       exchanges
-    #     * As we cannot distinguish maker from taker yet (MAKER
-    #       proposal), we charge a flat fee for the operations, which
-    #       hurts market makers and liquidity providers as they pre-pay
-    #       the fees even if their orders are not filled.
-    #     * Instead of benefiting from the flat fees, we should encourage
-    #       liquidity providers by very low flat fees and raise the
-    #       percentage trading fee for all committee-owned assets (as
+    #     * As we can distinguish maker from taker, we charge a higher
+    #       flat fee for the takers but a lower fee the makers in order to
+    #       not hurt market makers and liquidity providers.
+    #     * To earn more income for the chain we raise the
+    #       percentage trading fee for committee-owned assets too (as
     #       described in the introduction).
     #     * Regional differences can be made to distinguish CNY from USD,
     #       GOLD and EUR.
-    #     * I thus propose a $0.001c flat fee and rising the percentage
-    #       trading fee to 0.10% per filled trade.
+    #     * A fee equals to transfer operation would be reasonable for
+    #       takers, with a huge discount (I.E. 95%) for makers.
     #
-    "limit_order_create": {"fee": 0.001},
+    "limit_order_create": {"fee": 0.018},
     #####################################################
     #
     # Description:
@@ -558,7 +558,7 @@ native_fees = {  #####################################################
     #     * Depending on the actual business model, a high fee might result in
     #       CERs to go 'out-of sync' or at least get updated more rarely
     #
-    "asset_update": {"fee": 0.1, "price_per_kbyte": 0.007},
+    "asset_update": {"fee": 0.1, "price_per_kbyte": 0.01},
     #####################################################
     #
     # Description:
@@ -816,18 +816,19 @@ native_fees = {  #####################################################
     #
     # Description:
     #
-    #     To transfer accounts to another owner, a separated operation exists.
+    #     This is the sub-asset creation fee when a dummy ticket_create fee
+    #     is configured. Otherwise it is not used.
     #
     # Rational:
     #
-    #     * In my opinion, this operation has no use at all and the
-    #       same can be achieved by the account_update_operation
+    #     * To encourage businesses building their own brands, it makes sense
+    #       to have a lower fee for creating sub assets.
     #
     # Conclusion:
     #
     #     * Anything can be used here
     #
-    "account_transfer": {"fee": 5},
+    "account_transfer": {"fee": 25},
     #####################################################
     #
     # Description:
@@ -836,16 +837,16 @@ native_fees = {  #####################################################
     #
     # Rational:
     #
-    #     * the governance mechanics require accounts to change in
-    #       order to cast a vote
-    #     * having a high fee will lead to less votes being cast or changed
+    #     * voting is serious, thus not recommended to update frequently.
+    #     * updating of account authorities is an advanced feature thus
+    #       it is reasonable to set a high fee.
     #
     # Conclusion:
     #
-    #     * This operation should be as cheap as possible
-    #     * The price per kbyte fee should mostly prevent spam
+    #     * Any fee between $0.05-$1 seems to be reasonable considering
+    #       the above arguments.
     #
-    "account_update": {"fee": 0.001, "price_per_kbyte": 0.007},
+    "account_update": {"fee": 0.05, "price_per_kbyte": 0.01},
     #####################################################
     #
     # Description:
@@ -869,7 +870,7 @@ native_fees = {  #####################################################
     #       and make a profit for the rare namespace
     #     * The price per kbyte fee should mostly prevent spam
     #
-    "account_create": {"basic_fee": 0.10, "premium_fee": 5, "price_per_kbyte": 0.007},
+    "account_create": {"basic_fee": 0.10, "premium_fee": 5, "price_per_kbyte": 0.01},
     #####################################################
     #####################################################
     # VESTING OPERATIONS
@@ -1082,7 +1083,7 @@ native_fees = {  #####################################################
     #     * no real data be added except for valid public keys,
     #       hence the per kbyte fee is rather low
     #
-    "proposal_update": {"fee": 0.005, "price_per_kbyte": 0.007},
+    "proposal_update": {"fee": 0.01, "price_per_kbyte": 0.01},
     #####################################################
     #####################################################
     # COMMITTEE OPERATIONS
@@ -1334,7 +1335,7 @@ native_fees = {  #####################################################
     #         * not discouraging high monthly payments such
     #           as rent, electricity bills, etc.
     #
-    "withdraw_permission_claim": {"fee": 0.8 * 0.0180, "price_per_kbyte": 0.007},
+    "withdraw_permission_claim": {"fee": 0.8 * 0.0180, "price_per_kbyte": 0.01},
     #####################################################
     #
     # Description:
@@ -1374,7 +1375,7 @@ native_fees = {  #####################################################
     #     * flat fee is to prevent spamming with small custom operations
     #     * per kbyte fee is used to prevent spamming with huge
     #       amounts of data
-    "custom": {"fee": 0.01, "price_per_kbyte": 0.05},
+    "custom": {"fee": 0.01, "price_per_kbyte": 0.01},
     #####################################################
     #
     # Description:
@@ -1389,7 +1390,7 @@ native_fees = {  #####################################################
     #     Until we figured out what we can do with this operation,
     #     it should probably be rather expensive.
     #
-    "assert": {"fee": 0.50},
+    "assert": {"fee": 0.01},
     #####################################################
     #
     # Description:
@@ -1414,7 +1415,7 @@ native_fees = {  #####################################################
     #     * Flat fees of $0.50 to $5 seem reasonable
     #     * kbyte price is required to prevent data spamming.
     #
-    "override_transfer": {"fee": 1, "price_per_kbyte": 0.007},
+    "override_transfer": {"fee": 1, "price_per_kbyte": 0.01},
     #####################################################
     # Virtual
     "fba_distribute": {},
