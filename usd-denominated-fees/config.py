@@ -1479,6 +1479,126 @@ native_fees = {  #####################################################
     # Update 11/2018:
     #
     "asset_update_issuer": {"fee": 10},
+    #####################################################
+    #
+    # Description:
+    #
+    #     This is a dummy field for activation of sub-asset creation fee.
+    #
+    # Rational:
+    #
+    #    * N/A
+    #
+    # Conclusion:
+    #
+    #     * Anything
+    #
+    # Update 09/2020:
+    #
+    "ticket_create_operation": {"fee": 1},
+    #####################################################
+    #
+    # Description:
+    #
+    #     Unused.
+    #
+    # Rational:
+    #
+    #    * N/A
+    #
+    # Conclusion:
+    #
+    #     * Anything
+    #
+    # Update 09/2020:
+    #
+    "ticket_update_operation": {"fee": 1},
+    #####################################################
+    #
+    # Description:
+    #
+    #     To create a liquidity pool.
+    #
+    # Rational:
+    #
+    #    * Since an asset must be created for the pool, the fee here
+    #      can be relatively lower.
+    #
+    # Conclusion:
+    #
+    #     * around 1$
+    #
+    # Update 09/2020:
+    #
+    "liquidity_pool_create_operation": {"fee": 1},
+    #####################################################
+    #
+    # Description:
+    #
+    #     To delete a liquidity pool.
+    #
+    # Rational:
+    #
+    #    * It releases RAM
+    #
+    # Conclusion:
+    #
+    #     * zero
+    #
+    # Update 09/2020:
+    #
+    "liquidity_pool_delete_operation": {"fee": 0},
+    #####################################################
+    #
+    # Description:
+    #
+    #     To add funds to a liquidity pool.
+    #
+    # Rational:
+    #
+    #    * We should encourage people to add funds, thus a low fee
+    #
+    # Conclusion:
+    #
+    #     * 0.001$ - 0.01$
+    #
+    # Update 09/2020:
+    #
+    "liquidity_pool_deposit_operation": {"fee": 0.002},
+    #####################################################
+    #
+    # Description:
+    #
+    #     To remove funds from a liquidity pool.
+    #
+    # Rational:
+    #
+    #    * We should discourage people to remove funds, thus a higher fee
+    #
+    # Conclusion:
+    #
+    #     * 0.1$ - 1$
+    #
+    # Update 09/2020:
+    #
+    "liquidity_pool_withdraw_operation": {"fee": 0.1},
+    #####################################################
+    #
+    # Description:
+    #
+    #     To exchange with a liquidity pool.
+    #
+    # Rational:
+    #
+    #    * similar to limit orders
+    #
+    # Conclusion:
+    #
+    #     * similar to limit orders
+    #
+    # Update 09/2020:
+    #
+    "liquidity_pool_exchange_operation": {"fee": 0.02},
 }
 
 """ Connection settings to the wallet
