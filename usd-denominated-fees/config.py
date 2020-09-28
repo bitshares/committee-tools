@@ -1483,6 +1483,59 @@ native_fees = {  #####################################################
     #
     # Description:
     #
+    #     Creates a HTLC contract
+    #
+    # Rational:
+    #
+    #    * the operation is relatively small, but an object will
+    #      be kept in RAM for a period
+    #
+    # Conclusion:
+    #
+    #     * a small basic fee and a reasonable time-based fee
+    #
+    # Update 09/2020:
+    #
+    "htlc_create": {"fee": 0.001, "fee_per_day":0.033},
+    #####################################################
+    #
+    # Description:
+    #
+    #     Redeems a HTLC contract
+    #
+    # Rational:
+    #
+    #    * the operation removes data from RAM, but its size can be large.
+    #
+    # Conclusion:
+    #
+    #     * a small basic fee and a reasonable size-based fee
+    #
+    # Update 09/2020:
+    #
+    "htlc_redeem": {"fee": 0.001, "fee_per_kb":0.1},
+    #####################################################
+    #
+    # Description:
+    #
+    #     Extends a HTLC contract
+    #
+    # Rational:
+    #
+    #    * the operation is relatively small, but an object will
+    #      be kept in RAM for a longer period
+    #
+    # Conclusion:
+    #
+    #     * a small basic fee and a reasonable time-based fee
+    #
+    # Update 09/2020:
+    #
+    "htlc_create": {"fee": 0.001, "fee_per_day":0.033},
+    #####################################################
+    #
+    # Description:
+    #
     #     This is a dummy field for activation of sub-asset creation fee.
     #
     # Rational:
