@@ -826,9 +826,9 @@ native_fees = {  #####################################################
     #
     # Conclusion:
     #
-    #     * Anything can be used here
+    #     * 20$
     #
-    "account_transfer": {"fee": 25},
+    "account_transfer": {"fee": 20},
     #####################################################
     #
     # Description:
