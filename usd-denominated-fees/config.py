@@ -693,15 +693,15 @@ native_fees = {  #####################################################
     #     * This is considered a rare operation
     #     * many issuers of MPA that either uses percentage market
     #       fees or the fee pool may eventually use this operation
-    #     * Making a profit out of using the decentralized exchange
-    #       may require a higher fee
+    #     * For the asset owners' convenience it's reasonable to set
+    #       a relatively cheap fee.
     #
     # Conclusion:
     #
-    #     * Any fee between $1-$10 seems to be reasonable considering
+    #     * Any fee between $0.1-$1 seems to be reasonable considering
     #       the above arguments.
     #
-    "asset_update_feed_producers": {"fee": 5},
+    "asset_update_feed_producers": {"fee": 0.5},
     #####################################################
     #
     # Description:
@@ -734,16 +734,15 @@ native_fees = {  #####################################################
     #
     # Rational:
     #
-    #     * This is considered a very rare operation
-    #     * Most MPA will never be updated if they have been created
-    #       correctly
+    #     * For the asset owners' convenience it's reasonable to set
+    #       a relatively cheap fee.
     #
     # Conclusion:
     #
-    #     * Any fee between $1-$10 seems to be reasonable considering
+    #     * Any fee between $0.1-$1 seems to be reasonable considering
     #       the above arguments.
     #
-    "asset_update_bitasset": {"fee": 5},
+    "asset_update_bitasset": {"fee": 0.5},
     #####################################################
     #####################################################
     # ACCOUNT OPERATIONS
