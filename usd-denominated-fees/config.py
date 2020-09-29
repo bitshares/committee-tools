@@ -1451,15 +1451,15 @@ native_fees = {  #####################################################
     #
     # Rational:
     #
-    #     * This should be a very rare operation
+    #     * For asset owners' convenience
     #
     # Conclusion:
     #
-    #     * Flat fees of $5+ seem reasonable
+    #     * Flat fees of $0.1 seem reasonable
     #
-    # Update 11/2018:
+    # Update 09/2020:
     #
-    "asset_claim_pool": {"fee": 5},
+    "asset_claim_pool": {"fee": 0.1},
     #####################################################
     #
     # Description:
