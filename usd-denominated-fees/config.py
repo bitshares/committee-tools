@@ -368,6 +368,8 @@ native_fees = {  #####################################################
     #            market fee, but a flat fee
     #     * if an order is matched as the maker, a part of the creation fee
     #       will be refunded.
+    #     * sometimes makers need to take orders on the opposite side to
+    #       be able to provide better liquidity.
     #
     # Other exchanges:
     #
@@ -402,10 +404,11 @@ native_fees = {  #####################################################
     #       described in the introduction).
     #     * Regional differences can be made to distinguish CNY from USD,
     #       GOLD and EUR.
-    #     * A fee equals to transfer operation would be reasonable for
+    #     * A fee equals to or slightly lower than transfer operation would
+    #       be reasonable for
     #       takers, with a huge discount (I.E. 95%) for makers.
     #
-    "limit_order_create": {"fee": 0.018},
+    "limit_order_create": {"fee": 0.01},
     #####################################################
     #
     # Description:
